@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/presentation/pages/home_page.dart';
+import 'package:flutter_starter_kit/presentation/pages/home/home_page.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -9,7 +9,6 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
