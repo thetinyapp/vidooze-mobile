@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter_kit/presentation/base/base_stateful_page_widget.dart';
-import 'package:flutter_starter_kit/presentation/pages/home/sample_page_store.dart';
+import 'package:flutter_starter_kit/presentation/pages/sample/sample_page_store.dart';
 
 class SamplePage extends BaseStatefulPageWidget<SamplePageStore> {
   const SamplePage({super.key});
