@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_starter_kit/presentation/base/base_page_store.dart';
 
-abstract class BaseStatefulWidgetPage<T extends BasePageStore>
+abstract class BaseStatefulPageWidget<T extends BasePageStore>
     extends StatefulWidget {
-  const BaseStatefulWidgetPage({super.key});
+  const BaseStatefulPageWidget({super.key});
 
   @override
   BasePageState<T> createState();
 }
 
 abstract class BasePageState<T extends BasePageStore>
-    extends State<BaseStatefulWidgetPage<T>> {
+    extends State<BaseStatefulPageWidget<T>> {
   late T store;
 
   T createStore();

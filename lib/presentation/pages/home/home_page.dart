@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/presentation/base/base_stateful_widget_page.dart';
+import 'package:flutter_starter_kit/presentation/base/base_stateful_page_widget.dart';
 import 'package:flutter_starter_kit/presentation/pages/home/home_page_store.dart';
 
-class HomePage extends BaseStatefulWidgetPage<HomePageStore> {
+class HomePage extends BaseStatefulPageWidget<HomePageStore> {
   const HomePage({super.key});
 
   @override
