@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_starter_kit/presentation/base/base_stateful_widget_page.dart';
 import 'package:flutter_starter_kit/presentation/pages/home/home_page_store.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends BaseStatefulWidgetPage<HomePageStore> {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  BasePageState<HomePageStore> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  final store = HomePageStore();
+class _HomePageState extends BasePageState<HomePageStore> {
+  int a = 1;
 
   @override
-  Widget build(BuildContext context) {
+  HomePageStore createStore() => HomePageStore();
+
+  @override
+  Widget builder(BuildContext context, HomePageStore store) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -26,12 +29,10 @@ class _HomePageState extends State<HomePage> {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Observer(builder: (_) {
-              return Text(
-                '${store.counter}',
-                style: Theme.of(context).textTheme.headlineMedium,
-              );
-            }),
+            Text(
+              '${store.counter}',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
           ],
         ),
       ),
