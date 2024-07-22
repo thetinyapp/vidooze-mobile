@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/presentation/pages/home/home_page.dart';
+import 'package:flutter_starter_kit/presentation/pages/home/sample_page.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -32,7 +32,7 @@ class _AppState extends State<App> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const SamplePage(),
     );
   }
 }

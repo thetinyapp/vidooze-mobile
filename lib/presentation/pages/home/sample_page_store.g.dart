@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_page_store.dart';
+part of 'sample_page_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,9 +8,9 @@ part of 'home_page_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$HomePageStore on _HomePageStore, Store {
+mixin _$SamplePageStore on _SamplePageStore, Store {
   late final _$counterAtom =
-      Atom(name: '_HomePageStore.counter', context: context);
+      Atom(name: '_SamplePageStore.counter', context: context);
 
   @override
   int get counter {
@@ -25,17 +25,17 @@ mixin _$HomePageStore on _HomePageStore, Store {
     });
   }
 
-  late final _$_HomePageStoreActionController =
-      ActionController(name: '_HomePageStore', context: context);
+  late final _$_SamplePageStoreActionController =
+      ActionController(name: '_SamplePageStore', context: context);
 
   @override
   dynamic incrementCounter() {
-    final _$actionInfo = _$_HomePageStoreActionController.startAction(
-        name: '_HomePageStore.incrementCounter');
+    final _$actionInfo = _$_SamplePageStoreActionController.startAction(
+        name: '_SamplePageStore.incrementCounter');
     try {
       return super.incrementCounter();
     } finally {
-      _$_HomePageStoreActionController.endAction(_$actionInfo);
+      _$_SamplePageStoreActionController.endAction(_$actionInfo);
     }
   }
 

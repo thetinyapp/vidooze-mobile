@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter_kit/presentation/base/base_stateful_page_widget.dart';
-import 'package:flutter_starter_kit/presentation/pages/home/home_page_store.dart';
+import 'package:flutter_starter_kit/presentation/pages/home/sample_page_store.dart';
 
-class HomePage extends BaseStatefulPageWidget<HomePageStore> {
-  const HomePage({super.key});
+class SamplePage extends BaseStatefulPageWidget<SamplePageStore> {
+  const SamplePage({super.key});
 
   @override
-  BasePageState<HomePageStore> createState() => _HomePageState();
+  BasePageState<SamplePageStore> createState() => _HomePageState();
 }
 
-class _HomePageState extends BasePageState<HomePageStore> {
+class _HomePageState extends BasePageState<SamplePageStore> {
   @override
-  HomePageStore createStore() => HomePageStore();
+  SamplePageStore createStore() => SamplePageStore(initialCount: 1);
 
   @override
-  Widget buildBody(BuildContext context, HomePageStore store) {
+  Widget buildBody(BuildContext context, SamplePageStore store) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
