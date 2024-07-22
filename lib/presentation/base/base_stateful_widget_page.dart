@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_starter_kit/presentation/base/base_page_store.dart';
 
@@ -16,19 +16,25 @@ abstract class BasePageState<T extends BasePageStore>
 
   T createStore();
 
-  Widget builder(BuildContext context, T store);
+  Widget buildBody(BuildContext context, T store);
+
+  PreferredSizeWidget? buildAppBar(BuildContext context, T store) => null;
 
   @override
   void initState() {
     super.initState();
-    store = createStore();
-    store.init();
+    store = createStore()..init();
   }
 
   @override
   Widget build(BuildContext context) {
     return Observer(
-      builder: (_) => builder(context, store),
+      builder: (context) {
+        return Scaffold(
+          appBar: buildAppBar(context, store),
+          body: buildBody(context, store),
+        );
+      },
     );
   }
 

@@ -10,13 +10,11 @@ class HomePage extends BaseStatefulWidgetPage<HomePageStore> {
 }
 
 class _HomePageState extends BasePageState<HomePageStore> {
-  int a = 1;
-
   @override
   HomePageStore createStore() => HomePageStore();
 
   @override
-  Widget builder(BuildContext context, HomePageStore store) {
+  Widget buildBody(BuildContext context, HomePageStore store) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
