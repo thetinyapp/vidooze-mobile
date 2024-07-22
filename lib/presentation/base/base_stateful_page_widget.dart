@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_starter_kit/presentation/base/base_page_store.dart';
+import 'package:mobx/mobx.dart';
 
 abstract class BaseStatefulPageWidget<T extends BasePageStore>
     extends StatefulWidget {
@@ -16,6 +17,8 @@ abstract class BasePageState<T extends BasePageStore>
 
   T createStore();
 
+  ReactionDisposer? _unAuthorisedDisposer;
+
   Widget buildBody(BuildContext context, T store);
 
   PreferredSizeWidget? buildAppBar(BuildContext context, T store) => null;
@@ -24,6 +27,9 @@ abstract class BasePageState<T extends BasePageStore>
   void initState() {
     super.initState();
     store = createStore()..init();
+    _unAuthorisedDisposer = when((_) => store.isUnAuthorised, () {
+      // redirect to auth
+    });
   }
 
   @override
@@ -40,6 +46,7 @@ abstract class BasePageState<T extends BasePageStore>
 
   @override
   void dispose() {
+    _unAuthorisedDisposer?.call();
     store.dispose();
     super.dispose();
   }
