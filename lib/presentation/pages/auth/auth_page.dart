@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:vidooze_mobile/presentation/base/base_stateful_page_widget.dart';
+import 'package:vidooze_mobile/presentation/components/space.dart';
 import 'package:vidooze_mobile/presentation/pages/auth/auth_page_store.dart';
 
 @RoutePage()
@@ -12,6 +13,8 @@ class AuthPage extends BaseStatefulPageWidget<AuthPageStore> {
 }
 
 class _AuthPageState extends BasePageState<AuthPageStore> {
+  final TextEditingController _controller = TextEditingController();
+
   @override
   AuthPageStore createStore() => AuthPageStore();
 
@@ -25,11 +28,38 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
 
   @override
   Widget buildBody(BuildContext context, AuthPageStore store) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[],
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            TextField(
+              controller: _controller,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Enter email',
+              ),
+            ),
+            const Space(
+              y: 20,
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                foregroundColor: WidgetStateProperty.all<Color>(Colors.blue),
+              ),
+              onPressed: () {},
+              child: const Text('Login'),
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
