@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:vidooze_mobile/presentation/base/base_stateful_page_widget.dart';
 import 'package:vidooze_mobile/presentation/pages/auth/auth_page_store.dart';
 
+@RoutePage()
 class AuthPage extends BaseStatefulPageWidget<AuthPageStore> {
   const AuthPage({super.key});
 

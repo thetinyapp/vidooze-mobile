@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:vidooze_mobile/presentation/base/base_stateful_page_widget.dart';
 import 'package:vidooze_mobile/presentation/pages/home/home_page_store.dart';
 
-class AuthPage extends BaseStatefulPageWidget<HomePageStore> {
-  const AuthPage({super.key});
+@RoutePage()
+class HomePage extends BaseStatefulPageWidget<HomePageStore> {
+  const HomePage({super.key});
 
   @override
   BasePageState<HomePageStore> createState() => _HomePageState();
