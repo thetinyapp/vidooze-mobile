@@ -8,10 +8,10 @@ class AuthPage extends BaseStatefulPageWidget<AuthPageStore> {
   const AuthPage({super.key});
 
   @override
-  BasePageState<AuthPageStore> createState() => _HomePageState();
+  BasePageState<AuthPageStore> createState() => _AuthPageState();
 }
 
-class _HomePageState extends BasePageState<AuthPageStore> {
+class _AuthPageState extends BasePageState<AuthPageStore> {
   @override
   AuthPageStore createStore() => AuthPageStore();
 
