@@ -1,4 +1,6 @@
+import 'package:result_dart/src/result.dart';
 import 'package:vidooze_mobile/data/data_sources/auth_data_source.dart';
+import 'package:vidooze_mobile/domain/entity/error.dart';
 import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -9,8 +11,8 @@ class AuthRepositoryImpl implements AuthRepository {
   }) : _dataSource = dataSource;
 
   @override
-  Future login() async {
-    final it = await _dataSource.login();
-    return;
+  Future<Result<bool, BaseError>> login() async {
+    await _dataSource.login();
+    return const Result.success(true);
   }
 }
