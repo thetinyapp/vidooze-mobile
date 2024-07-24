@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:vidooze_mobile/di/configure_di.dart';
+import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
 import 'package:vidooze_mobile/presentation/base/base_stateful_page_widget.dart';
 import 'package:vidooze_mobile/presentation/components/space.dart';
 import 'package:vidooze_mobile/presentation/pages/auth/auth_page_store.dart';
@@ -16,7 +18,9 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
   final TextEditingController _controller = TextEditingController();
 
   @override
-  AuthPageStore createStore() => AuthPageStore();
+  AuthPageStore createStore() => AuthPageStore(
+        authRepository: locator.get<AuthRepository>(),
+      );
 
   @override
   PreferredSizeWidget? buildAppBar(BuildContext context, AuthPageStore store) {
@@ -35,6 +39,7 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             TextField(
+              keyboardType: TextInputType.emailAddress,
               controller: _controller,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -48,7 +53,9 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
               style: ButtonStyle(
                 foregroundColor: WidgetStateProperty.all<Color>(Colors.blue),
               ),
-              onPressed: () {},
+              onPressed: () {
+                store.login();
+              },
               child: const Text('Login'),
             ),
           ],

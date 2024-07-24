@@ -1,6 +1,6 @@
-import 'package:vidooze_mobile/domain/models/error.dart';
 import 'package:mobx/mobx.dart';
 import 'package:result_dart/result_dart.dart';
+import 'package:vidooze_mobile/domain/entity/error.dart';
 
 abstract class BasePageStore with Store {
   @observable
