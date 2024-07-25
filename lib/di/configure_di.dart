@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:vidooze_mobile/data/data_sources/auth_data_source.dart';
 import 'package:vidooze_mobile/data/data_sources/sample_data_source.dart';
+import 'package:vidooze_mobile/data/data_sources/token_data_source.dart';
 import 'package:vidooze_mobile/data/network/rest_client.dart';
 import 'package:vidooze_mobile/data/repository/auth_repository_impl.dart';
 import 'package:vidooze_mobile/data/repository/sample_repository_impl.dart';
@@ -25,6 +27,11 @@ void _setupDataSource() {
       restClient: locator.get<RestClient>(),
     ),
   );
+  locator.registerLazySingleton<TokenDataSource>(
+    () => TokenDataSourceImpl(
+      storage: const FlutterSecureStorage(),
+    ),
+  );
 }
 
 void _setupRepository() {
@@ -35,8 +42,8 @@ void _setupRepository() {
   );
   locator.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(
-      dataSource: locator.get<AuthDataSource>(),
-    ),
+        authDataSource: locator.get<AuthDataSource>(),
+        tokenDataSource: locator.get<TokenDataSource>()),
   );
 }
 

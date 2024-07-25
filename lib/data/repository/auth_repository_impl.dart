@@ -1,18 +1,31 @@
 import 'package:result_dart/src/result.dart';
 import 'package:vidooze_mobile/data/data_sources/auth_data_source.dart';
+import 'package:vidooze_mobile/data/data_sources/token_data_source.dart';
 import 'package:vidooze_mobile/domain/entity/error.dart';
 import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthDataSource _dataSource;
+  final AuthDataSource _authDataSource;
+  final TokenDataSource _tokenDataSource;
 
   AuthRepositoryImpl({
-    required AuthDataSource dataSource,
-  }) : _dataSource = dataSource;
+    required AuthDataSource authDataSource,
+    required TokenDataSource tokenDataSource,
+  })  : _authDataSource = authDataSource,
+        _tokenDataSource = tokenDataSource;
 
   @override
   Future<Result<bool, BaseError>> login() async {
-    await _dataSource.login();
+    final result = await _authDataSource.login();
+    _saveToken(
+      accessToken: result.accessToken,
+      refreshToken: result.refreshToken,
+    );
     return const Result.success(true);
+  }
+
+  void _saveToken({required String accessToken, required String refreshToken}) {
+    _tokenDataSource.setAccessToken(accessToken);
+    _tokenDataSource.setRefreshToken(refreshToken);
   }
 }
