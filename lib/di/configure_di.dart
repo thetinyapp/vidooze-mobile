@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:vidooze_mobile/data/data_sources/auth_data_source.dart';
+import 'package:vidooze_mobile/data/data_sources/error_reporting_data_source.dart';
 import 'package:vidooze_mobile/data/data_sources/sample_data_source.dart';
 import 'package:vidooze_mobile/data/data_sources/token_data_source.dart';
 import 'package:vidooze_mobile/data/network/rest_client.dart';
@@ -32,6 +33,9 @@ void _setupDataSource() {
       storage: const FlutterSecureStorage(),
     ),
   );
+  locator.registerLazySingleton<ErrorReportingDataSource>(
+    () => FirebaseErrorReportingDataSource(),
+  );
 }
 
 void _setupRepository() {
@@ -42,8 +46,10 @@ void _setupRepository() {
   );
   locator.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(
-        authDataSource: locator.get<AuthDataSource>(),
-        tokenDataSource: locator.get<TokenDataSource>()),
+      authDataSource: locator.get<AuthDataSource>(),
+      tokenDataSource: locator.get<TokenDataSource>(),
+      errorReportingDataSource: locator.get<ErrorReportingDataSource>(),
+    ),
   );
 }
 

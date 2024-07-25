@@ -12,6 +12,7 @@ class AuthRepositoryImpl extends BaseRepository implements AuthRepository {
   AuthRepositoryImpl({
     required AuthDataSource authDataSource,
     required TokenDataSource tokenDataSource,
+    required super.errorReportingDataSource,
   })  : _authDataSource = authDataSource,
         _tokenDataSource = tokenDataSource;
 
