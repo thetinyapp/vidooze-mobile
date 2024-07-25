@@ -15,7 +15,7 @@ abstract class BasePageStore with Store {
     try {
       final result = await apiCall();
       result.onFailure((failure) {
-        if (failure is UnAuthorisedError) {
+        if (failure is UnauthorisedError) {
           isUnAuthorised = true;
         }
       });

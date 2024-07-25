@@ -7,8 +7,8 @@ abstract class BaseError implements Exception {
   String toString() => message;
 }
 
-class UnAuthorisedError extends BaseError {
-  UnAuthorisedError(super.message);
+class UnauthorisedError extends BaseError {
+  UnauthorisedError(super.message);
 }
 
 class UnknownError extends BaseError {
