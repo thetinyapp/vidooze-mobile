@@ -11,13 +11,13 @@ abstract class TokenDataSource {
   Future<String?> getRefreshTokenToken();
 }
 
-class TokenDataSourceImpl implements TokenDataSource {
+class LocalTokenDataSource implements TokenDataSource {
   final FlutterSecureStorage _storage;
 
   final String _keyAccessToken = "access_token";
   final String _keyRefreshToken = "refresh_token";
 
-  TokenDataSourceImpl({required FlutterSecureStorage storage})
+  LocalTokenDataSource({required FlutterSecureStorage storage})
       : _storage = storage;
 
   @override
