@@ -1,4 +1,8 @@
 import 'package:mobx/mobx.dart';
+import 'package:vidooze_mobile/domain/entity/analytics/login_failure_analytics_event/login_failure_analytics_event.dart';
+import 'package:vidooze_mobile/domain/entity/analytics/login_success_analytics_event/login_success_analytics_event.dart';
+import 'package:vidooze_mobile/domain/entity/error.dart';
+import 'package:vidooze_mobile/domain/repository/analytics_repository.dart';
 import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
 import 'package:vidooze_mobile/presentation/base/base_page_store.dart';
 
@@ -6,19 +10,36 @@ import 'package:vidooze_mobile/presentation/base/base_page_store.dart';
 part 'auth_page_store.g.dart';
 
 class AuthPageStore extends _AuthPageStore with _$AuthPageStore {
-  AuthPageStore({required super.authRepository});
+  AuthPageStore({
+    required super.authRepository,
+    required super.analyticsRepository,
+  });
 }
 
 abstract class _AuthPageStore extends BasePageStore with Store {
   final AuthRepository _authRepository;
+  final AnalyticsRepository _analyticsRepository;
 
-  _AuthPageStore({required AuthRepository authRepository})
-      : _authRepository = authRepository;
+  _AuthPageStore({
+    required AuthRepository authRepository,
+    required AnalyticsRepository analyticsRepository,
+  })  : _authRepository = authRepository,
+        _analyticsRepository = analyticsRepository;
+
+  _handleLoginSuccess(bool _value) async {
+    await _analyticsRepository
+        .logEvent(LoginSuccessAnalyticsEvent(type: "form"));
+  }
+
+  _handleLoginFailure(BaseError _value) async {
+    await _analyticsRepository
+        .logEvent(LoginFailureAnalyticsEvent(type: "form"));
+  }
 
   login() async {
     final result = await executeApiCall(() => _authRepository.login());
     result
-      ..onSuccess((value) {})
-      ..onFailure((value) {});
+      ..onSuccess(_handleLoginSuccess)
+      ..onFailure(_handleLoginFailure);
   }
 }

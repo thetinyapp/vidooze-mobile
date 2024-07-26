@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:vidooze_mobile/di/configure_di.dart';
+import 'package:vidooze_mobile/domain/repository/analytics_repository.dart';
 import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
 import 'package:vidooze_mobile/presentation/base/base_stateful_page_widget.dart';
 import 'package:vidooze_mobile/presentation/components/space.dart';
@@ -20,6 +21,7 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
   @override
   AuthPageStore createStore() => AuthPageStore(
         authRepository: locator.get<AuthRepository>(),
+        analyticsRepository: locator.get<AnalyticsRepository>(),
       );
 
   @override
