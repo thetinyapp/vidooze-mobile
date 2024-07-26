@@ -5,7 +5,7 @@ import 'package:vidooze_mobile/presentation/pages/home/home_page_store.dart';
 
 @RoutePage()
 class HomePage extends BaseStatefulPageWidget<HomePageStore> {
-  const HomePage({super.key});
+  const HomePage({super.key}) : super(pageName: "Home");
 
   @override
   BasePageState<HomePageStore> createState() => _HomePageState();

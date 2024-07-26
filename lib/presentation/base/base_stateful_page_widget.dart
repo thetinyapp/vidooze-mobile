@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:vidooze_mobile/presentation/base/base_page_store.dart';
 import 'package:mobx/mobx.dart';
+import 'package:vidooze_mobile/di/configure_di.dart';
+import 'package:vidooze_mobile/domain/repository/analytics_repository.dart';
+import 'package:vidooze_mobile/presentation/base/base_page_store.dart';
 
 abstract class BaseStatefulPageWidget<T extends BasePageStore>
     extends StatefulWidget {
-  const BaseStatefulPageWidget({super.key});
+  final String pageName;
+
+  const BaseStatefulPageWidget({super.key, required this.pageName});
 
   @override
   BasePageState<T> createState();
@@ -19,6 +23,9 @@ abstract class BasePageState<T extends BasePageStore>
 
   ReactionDisposer? _unAuthorisedDisposer;
 
+  final AnalyticsRepository _analyticsRepository =
+      locator.get<AnalyticsRepository>();
+
   Widget buildBody(BuildContext context, T store);
 
   PreferredSizeWidget? buildAppBar(BuildContext context, T store) => null;
@@ -26,6 +33,7 @@ abstract class BasePageState<T extends BasePageStore>
   @override
   void initState() {
     super.initState();
+    _analyticsRepository.logScreenView(widget.pageName);
     store = createStore()..init();
     _unAuthorisedDisposer = when((_) => store.isUnAuthorised, () {
       // redirect to auth

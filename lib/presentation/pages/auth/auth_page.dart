@@ -9,7 +9,7 @@ import 'package:vidooze_mobile/presentation/pages/auth/auth_page_store.dart';
 
 @RoutePage()
 class AuthPage extends BaseStatefulPageWidget<AuthPageStore> {
-  const AuthPage({super.key});
+  const AuthPage({super.key}) : super(pageName: "Auth");
 
   @override
   BasePageState<AuthPageStore> createState() => _AuthPageState();
