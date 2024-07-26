@@ -15,8 +15,8 @@ class UserRepositoryImpl extends BaseRepository implements UserRepository {
   @override
   Future<Result<bool, BaseError>> isLoggedIn() async {
     return await parseOrError(() async {
-      final it = await _tokenDataSource.getAccessToken();
-      return it != null;
+      final token = await _tokenDataSource.getAccessToken();
+      return token != null;
     });
   }
 }

@@ -10,8 +10,8 @@ abstract class BasePageStore with Store {
 
   dispose() {}
 
-  Future<Result<T, BaseError>> executeApiCall<T extends Object>(
-      Future<Result<T, BaseError>> Function() apiCall) async {
+  Future<Result<T, E>> executeApiCall<T extends Object, E extends BaseError>(
+      Future<Result<T, E>> Function() apiCall) async {
     try {
       final result = await apiCall();
       result.onFailure((failure) {
@@ -21,7 +21,8 @@ abstract class BasePageStore with Store {
       });
       return result;
     } catch (e) {
-      return Result.failure(UnknownError(e.toString()));
+      final error = UnknownError(e.toString()) as E;
+      return Result.failure(error);
     }
   }
 }

@@ -11,22 +11,22 @@ class BaseRepository {
     required ErrorReportingDataSource errorReportingDataSource,
   }) : _errorReportingDataSource = errorReportingDataSource;
 
-  Future<Result<T, F>> parseOrError<T extends Object, F extends BaseError>(
+  Future<Result<T, E>> parseOrError<T extends Object, E extends BaseError>(
     Future<T> Function() parseFunction,
   ) async {
     try {
       final result = await parseFunction();
       return Result.success(result);
     } on UnauthorizedException catch (e) {
-      final error = UnauthorisedError(e.toString()) as F;
+      final error = UnauthorisedError(e.toString()) as E;
       return Result.failure(error);
     } on BaseException catch (e) {
       _errorReportingDataSource.reportError();
-      final error = UnknownError(e.toString()) as F;
+      final error = UnknownError(e.toString()) as E;
       return Result.failure(error);
     } catch (e) {
       _errorReportingDataSource.reportError();
-      final error = UnknownError(e.toString()) as F;
+      final error = UnknownError(e.toString()) as E;
       return Result.failure(error);
     }
   }
