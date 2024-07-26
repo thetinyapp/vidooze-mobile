@@ -7,7 +7,10 @@ part 'rest_client.g.dart';
 
 @RestApi()
 abstract class RestClient {
-  factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
+  factory RestClient(
+    Dio dio, {
+    String baseUrl,
+  }) = _RestClient;
 
   @GET('/b18df0d96a17c30c8f08')
   Future<LoginResponse> login();

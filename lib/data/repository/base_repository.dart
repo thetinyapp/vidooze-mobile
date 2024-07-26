@@ -21,11 +21,21 @@ class BaseRepository {
       final error = UnauthorisedError(e.toString()) as E;
       return Result.failure(error);
     } on BaseException catch (e) {
-      _errorReportingDataSource.reportError();
+      _errorReportingDataSource.reportError(
+        error: e.error!,
+        source: e.toString(),
+        isFatal: true,
+        stackTrace: e.stackTrace,
+      );
       final error = UnknownError(e.toString()) as E;
       return Result.failure(error);
-    } catch (e) {
-      _errorReportingDataSource.reportError();
+    } catch (e, s) {
+      _errorReportingDataSource.reportError(
+        error: e,
+        source: "Unknown Error",
+        isFatal: true,
+        stackTrace: s,
+      );
       final error = UnknownError(e.toString()) as E;
       return Result.failure(error);
     }

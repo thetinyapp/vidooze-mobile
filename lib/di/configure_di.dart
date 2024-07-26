@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:vidooze_mobile/data/data_sources/analytics_data_source.dart';
@@ -10,10 +11,12 @@ import 'package:vidooze_mobile/data/network/rest_client.dart';
 import 'package:vidooze_mobile/data/repository/analytics_repository_impl.dart';
 import 'package:vidooze_mobile/data/repository/app_repository_impl.dart';
 import 'package:vidooze_mobile/data/repository/auth_repository_impl.dart';
+import 'package:vidooze_mobile/data/repository/error_reporting_repository_impl.dart';
 import 'package:vidooze_mobile/data/repository/user_repository_impl.dart';
 import 'package:vidooze_mobile/domain/repository/analytics_repository.dart';
 import 'package:vidooze_mobile/domain/repository/app_repository.dart';
 import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
+import 'package:vidooze_mobile/domain/repository/error_reporting_repository.dart';
 import 'package:vidooze_mobile/domain/repository/user_repository.dart';
 
 final locator = GetIt.instance;
@@ -39,7 +42,8 @@ void _setupDataSource() {
     ),
   );
   locator.registerLazySingleton<ErrorReportingDataSource>(
-    () => FirebaseErrorReportingDataSource(),
+    () => FirebaseErrorReportingDataSource(
+        crashlytics: FirebaseCrashlytics.instance),
   );
   locator.registerLazySingleton<AnalyticsDataSource>(
     () => FirebaseAnalyticsDataSource(),
@@ -50,6 +54,11 @@ void _setupRepository() {
   locator.registerLazySingleton<AppRepository>(
     () => AppRepositoryImpl(
       appDataSource: locator.get<AppDataSource>(),
+    ),
+  );
+  locator.registerLazySingleton<ErrorReportingRepository>(
+    () => ErrorReportingRepositoryImpl(
+      dataSource: locator.get<ErrorReportingDataSource>(),
     ),
   );
   locator.registerLazySingleton<AnalyticsRepository>(
