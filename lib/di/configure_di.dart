@@ -8,8 +8,10 @@ import 'package:vidooze_mobile/data/data_sources/token_data_source.dart';
 import 'package:vidooze_mobile/data/network/rest_client.dart';
 import 'package:vidooze_mobile/data/repository/analytics_repository_impl.dart';
 import 'package:vidooze_mobile/data/repository/auth_repository_impl.dart';
+import 'package:vidooze_mobile/data/repository/user_repository_impl.dart';
 import 'package:vidooze_mobile/domain/repository/analytics_repository.dart';
 import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
+import 'package:vidooze_mobile/domain/repository/user_repository.dart';
 
 final locator = GetIt.instance;
 
@@ -39,6 +41,11 @@ void _setupDataSource() {
 }
 
 void _setupRepository() {
+  locator.registerLazySingleton<AnalyticsRepository>(
+    () => AnalyticsRepositoryImpl(
+      dataSource: locator.get<AnalyticsDataSource>(),
+    ),
+  );
   locator.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(
       authDataSource: locator.get<AuthDataSource>(),
@@ -46,9 +53,10 @@ void _setupRepository() {
       errorReportingDataSource: locator.get<ErrorReportingDataSource>(),
     ),
   );
-  locator.registerLazySingleton<AnalyticsRepository>(
-    () => AnalyticsRepositoryImpl(
-      dataSource: locator.get<AnalyticsDataSource>(),
+  locator.registerLazySingleton<UserRepository>(
+    () => UserRepositoryImpl(
+      errorReportingDataSource: locator.get<ErrorReportingDataSource>(),
+      tokenDataSource: locator.get<TokenDataSource>(),
     ),
   );
 }
