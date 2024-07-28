@@ -23,11 +23,9 @@ abstract class ErrorReportingDataSource {
 }
 
 class FirebaseErrorReportingDataSource implements ErrorReportingDataSource {
-  final FirebaseCrashlytics _crashlytics;
+  final FirebaseCrashlytics _crashlytics = FirebaseCrashlytics.instance;
 
-  FirebaseErrorReportingDataSource({
-    required FirebaseCrashlytics crashlytics,
-  }) : _crashlytics = crashlytics;
+  FirebaseErrorReportingDataSource();
 
   @override
   Future setUser(String id) async {

@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:vidooze_mobile/data/data_sources/analytics_data_source.dart';
 import 'package:vidooze_mobile/data/data_sources/auth_data_source.dart';
@@ -37,13 +35,12 @@ void _setupDataSource() {
     ),
   );
   locator.registerLazySingleton<TokenDataSource>(
-    () => LocalTokenDataSource(
-      storage: const FlutterSecureStorage(),
-    ),
+    () => LocalTokenDataSource(),
   );
   locator.registerLazySingleton<ErrorReportingDataSource>(
-    () => FirebaseErrorReportingDataSource(
-        crashlytics: FirebaseCrashlytics.instance),
+    () {
+      return FirebaseErrorReportingDataSource();
+    },
   );
   locator.registerLazySingleton<AnalyticsDataSource>(
     () => FirebaseAnalyticsDataSource(),

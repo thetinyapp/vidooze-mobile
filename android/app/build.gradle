@@ -3,6 +3,8 @@ plugins {
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.gms.google-services'
 }
 
 def localProperties = new Properties()
@@ -24,7 +26,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace = "com.example.flutter_starter_kit"
+    namespace = "com.thetinyapp.vidooze"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -33,9 +35,12 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.flutter_starter_kit"
+        applicationId = "com.thetinyapp.vidooze"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdk = flutter.minSdkVersion
@@ -44,6 +49,7 @@ android {
         versionName = flutterVersionName
         resConfigs "en"
         ndk {
+            //noinspection ChromeOsAbiSupport
             abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86-64'
         }
     }

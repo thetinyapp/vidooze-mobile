@@ -8,12 +8,8 @@ import 'package:vidooze_mobile/presentation/app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
-  // try {
-  //   _initApp();
-  //   _initErrorReporting();
-  // } catch (e) {
-  //   debugPrint(e.toString());
-  // }
+  await _initApp();
+  _initErrorReporting();
   runApp(const App());
 }
 
@@ -25,20 +21,25 @@ _initApp() async {
 void _initErrorReporting() {
   final errorReportingRepository = locator.get<ErrorReportingRepository>();
   FlutterError.onError = (errorDetails) {
-    errorReportingRepository.reportFlutterError(
-      details: errorDetails,
-      isFatal: true,
-    );
+    errorReportingRepository
+        .reportFlutterError(
+          details: errorDetails,
+          isFatal: true,
+        )
+        .then((_) {});
   };
 
   // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
   PlatformDispatcher.instance.onError = (error, stack) {
-    errorReportingRepository.reportError(
-      error: error,
-      stackTrace: stack,
-      source: "PLATFORM_DISPATCHER",
-      isFatal: true,
-    );
+    errorReportingRepository
+        .reportError(
+          error: error,
+          stackTrace: stack,
+          source: "PLATFORM_DISPATCHER",
+          isFatal: true,
+        )
+        .then((_) {});
+
     return true;
   };
 }

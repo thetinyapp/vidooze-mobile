@@ -1,0 +1,30 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "vidooze-prod",
+          "appId": "1:982251528432:android:2a09b8f47bdc9e6977a235",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "vidooze-prod",
+          "appId": "1:982251528432:ios:5a090d10da50d5bb77a235",
+          "uploadDebugSymbols": true,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "vidooze-prod",
+          "configurations": {
+            "android": "1:982251528432:android:2a09b8f47bdc9e6977a235",
+            "ios": "1:982251528432:ios:5a090d10da50d5bb77a235"
+          }
+        }
+      }
+    }
+  }
+}

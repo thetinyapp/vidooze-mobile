@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "982251528432",
+    "project_id": "vidooze-prod",
+    "storage_bucket": "vidooze-prod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982251528432:android:2a09b8f47bdc9e6977a235",
+        "android_client_info": {
+          "package_name": "com.thetinyapp.vidooze"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP0IXnJe5cSs9FDovLOxyeSrQDONK92X4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
