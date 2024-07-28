@@ -46,6 +46,7 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   firebase_core: ^3.2.0
   firebase_crashlytics: ^4.0.3
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +74,11 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - .env.development
+    - .env.production
+    - .env.staging
 
   # To add assets to your application, add an assets section, like this:
   # assets:

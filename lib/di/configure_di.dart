@@ -16,6 +16,7 @@ import 'package:vidooze_mobile/domain/repository/app_repository.dart';
 import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
 import 'package:vidooze_mobile/domain/repository/error_reporting_repository.dart';
 import 'package:vidooze_mobile/domain/repository/user_repository.dart';
+import 'package:vidooze_mobile/env/env.dart';
 
 final locator = GetIt.instance;
 
@@ -81,7 +82,7 @@ void _setupRepository() {
 void _setupNetwork() {
   locator.registerLazySingleton<Dio>(
     () => buildClient(
-      baseUrl: "https://api.npoint.io",
+      baseUrl: Env.apiUrl,
     ),
   );
   locator.registerLazySingleton(
