@@ -21,7 +21,8 @@ class BaseRepository {
       final error = UnauthorisedError(e.toString()) as E;
       return Result.failure(error);
     } on BaseException catch (e) {
-      _errorReportingDataSource.reportError(
+      // TODO: check why this does not report
+      await _errorReportingDataSource.reportError(
         error: e.error!,
         source: e.toString(),
         isFatal: true,
@@ -30,7 +31,7 @@ class BaseRepository {
       final error = UnknownError(e.toString()) as E;
       return Result.failure(error);
     } catch (e, s) {
-      _errorReportingDataSource.reportError(
+      await _errorReportingDataSource.reportError(
         error: e,
         source: "Unknown Error",
         isFatal: true,

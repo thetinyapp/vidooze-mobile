@@ -4,16 +4,21 @@ import 'package:flutter/widgets.dart';
 abstract class ErrorReportingDataSource {
   Future setUser(String id);
 
-  Future setCustomKey({required String key, required Object value});
+  Future setCustomKey({
+    required String key,
+    required Object value,
+  });
 
-  Future log(String message);
+  Future log(
+    String message,
+  );
 
   Future reportError({
     required String source,
     required Object error,
     StackTrace? stackTrace,
     isFatal = false,
-    info = const [],
+    Iterable<Object> information = const [],
   });
 
   Future reportFlutterError({
@@ -48,14 +53,15 @@ class FirebaseErrorReportingDataSource implements ErrorReportingDataSource {
     required Object error,
     StackTrace? stackTrace,
     isFatal = false,
-    info = const [],
+    Iterable<Object> information = const [],
   }) async {
-    return await _crashlytics.recordError(
+    final it = await _crashlytics.recordError(
       error,
       stackTrace,
       reason: source,
-      information: info,
+      information: information,
     );
+    return;
   }
 
   @override

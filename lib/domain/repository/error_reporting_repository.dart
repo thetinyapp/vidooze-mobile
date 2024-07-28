@@ -15,7 +15,7 @@ abstract class ErrorReportingRepository {
     required Object error,
     StackTrace? stackTrace,
     isFatal = false,
-    info = const [],
+    Iterable<Object> information = const [],
   });
 
   Future reportFlutterError({

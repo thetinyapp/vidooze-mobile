@@ -15,18 +15,17 @@ class ErrorReportingRepositoryImpl implements ErrorReportingRepository {
   }
 
   @override
-  Future reportError({
-    required String source,
-    required Object error,
-    StackTrace? stackTrace,
-    isFatal = false,
-    info = const [],
-  }) {
+  Future reportError(
+      {required String source,
+      required Object error,
+      StackTrace? stackTrace,
+      isFatal = false,
+      Iterable<Object> information = const []}) {
     return _dataSource.reportError(
       source: source,
       error: error,
       stackTrace: stackTrace,
-      info: info,
+      information: information,
       isFatal: isFatal,
     );
   }
