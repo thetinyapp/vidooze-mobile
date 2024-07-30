@@ -19,9 +19,9 @@ abstract class BasePageState<T extends BasePageStore>
     extends State<BaseStatefulPageWidget<T>> {
   late T store;
 
-  T createStore();
+  final disposers = <ReactionDisposer>[];
 
-  ReactionDisposer? _unAuthorisedDisposer;
+  T createStore();
 
   final AnalyticsRepository _analyticsRepository =
       locator.get<AnalyticsRepository>();
@@ -35,9 +35,11 @@ abstract class BasePageState<T extends BasePageStore>
     super.initState();
     _analyticsRepository.logScreenView(widget.pageName);
     store = createStore()..init();
-    _unAuthorisedDisposer = when((_) => store.isUnAuthorised, () {
-      // redirect to auth
-    });
+    disposers.add(
+      when((_) => store.isUnAuthorised, () {
+        // redirect to auth
+      }),
+    );
   }
 
   @override
@@ -46,7 +48,9 @@ abstract class BasePageState<T extends BasePageStore>
       builder: (context) {
         return Scaffold(
           appBar: buildAppBar(context, store),
-          body: buildBody(context, store),
+          body: SafeArea(
+            child: buildBody(context, store),
+          ),
         );
       },
     );
@@ -54,7 +58,9 @@ abstract class BasePageState<T extends BasePageStore>
 
   @override
   void dispose() {
-    _unAuthorisedDisposer?.call();
+    for (var disposer in disposers) {
+      disposer();
+    }
     store.dispose();
     super.dispose();
   }
