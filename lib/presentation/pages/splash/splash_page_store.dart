@@ -21,12 +21,16 @@ abstract class _SplashPageStore extends BasePageStore with Store {
   }) : _userRepository = userRepository;
 
   @override
-  init() {
-    super.init();
-    _userRepository.isLoggedIn().then((result) {
-      result.onSuccess((value) {
-        event = value ? SplashEvent.authorised() : SplashEvent.unauthorised();
-      });
+  initState() {
+    super.initState();
+    executeCall(() => _userRepository.isLoggedIn()).then((result) {
+      result
+        ..onSuccess((value) {
+          event = value ? SplashEvent.authorised() : SplashEvent.unauthorised();
+        })
+        ..onFailure((_) {
+          event = SplashEvent.unauthorised();
+        });
     });
   }
 }

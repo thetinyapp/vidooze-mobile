@@ -44,7 +44,7 @@ abstract class _AuthPageStore extends BasePageStore with Store {
 
   login() async {
     event = AuthEvent.authorisationInProgress();
-    final result = await executeApiCall(() => _authRepository.login());
+    final result = await executeCall(() => _authRepository.login());
     result
       ..onSuccess(_handleLoginSuccess)
       ..onFailure(_handleLoginFailure);

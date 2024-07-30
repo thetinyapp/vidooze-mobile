@@ -6,14 +6,14 @@ abstract class BasePageStore with Store {
   @observable
   bool isUnAuthorised = false;
 
-  init() {}
+  initState() {}
 
   dispose() {}
 
-  Future<Result<T, E>> executeApiCall<T extends Object, E extends BaseError>(
-      Future<Result<T, E>> Function() apiCall) async {
+  Future<Result<T, E>> executeCall<T extends Object, E extends BaseError>(
+      Future<Result<T, E>> Function() fn) async {
     try {
-      final result = await apiCall();
+      final result = await fn();
       result.onFailure((failure) {
         if (failure is UnauthorisedError) {
           isUnAuthorised = true;

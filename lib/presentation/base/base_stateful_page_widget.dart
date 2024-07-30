@@ -34,7 +34,7 @@ abstract class BasePageState<T extends BasePageStore>
   void initState() {
     super.initState();
     _analyticsRepository.logScreenView(widget.pageName);
-    store = createStore()..init();
+    store = createStore()..initState();
     disposers.add(
       when((_) => store.isUnAuthorised, () {
         // redirect to auth
