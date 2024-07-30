@@ -1,11 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:mobx/mobx.dart';
 import 'package:vidooze_mobile/di/configure_di.dart';
 import 'package:vidooze_mobile/domain/repository/analytics_repository.dart';
 import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
 import 'package:vidooze_mobile/presentation/base/base_stateful_page_widget.dart';
 import 'package:vidooze_mobile/presentation/components/space.dart';
+import 'package:vidooze_mobile/presentation/extensions/app_router_extension.dart';
 import 'package:vidooze_mobile/presentation/pages/auth/auth_page_store.dart';
+import 'package:vidooze_mobile/presentation/pages/auth/events/auth_event.dart';
+import 'package:vidooze_mobile/presentation/router/app_router.dart';
 
 @RoutePage()
 class AuthPage extends BaseStatefulPageWidget<AuthPageStore> {
@@ -17,6 +21,17 @@ class AuthPage extends BaseStatefulPageWidget<AuthPageStore> {
 
 class _AuthPageState extends BasePageState<AuthPageStore> {
   final TextEditingController _controller = TextEditingController();
+
+  ReactionDisposer? _eventDisposer;
+
+  @override
+  void initState() {
+    super.initState();
+    _eventDisposer = when(
+      (_) => store.event is AuthSuccess,
+      () => context.goToAndReplace(const HomeRoute()),
+    );
+  }
 
   @override
   AuthPageStore createStore() => AuthPageStore(
@@ -69,6 +84,7 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
   @override
   void dispose() {
     _controller.dispose();
+    _eventDisposer?.call();
     super.dispose();
   }
 }
