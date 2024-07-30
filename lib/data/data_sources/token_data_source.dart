@@ -1,3 +1,4 @@
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vidooze_mobile/data/dto/exception/local_token_exception.dart';
 
 abstract class TokenDataSource {
@@ -14,14 +15,13 @@ class LocalTokenDataSource implements TokenDataSource {
   final String _keyAccessToken = "access_token";
   final String _keyRefreshToken = "refresh_token";
 
-  LocalTokenDataSource();
+  final _preferences = SharedPreferences.getInstance();
 
   @override
   Future<String?> getAccessToken() async {
     try {
-      // final value = await _storage.read(key: _keyAccessToken);
-      // return value;
-      return Future.value("");
+      final preferences = await _preferences;
+      return preferences.getString(_keyAccessToken);
     } catch (e, s) {
       throw LocalTokenException("Get access token", e, s);
     }
@@ -30,9 +30,8 @@ class LocalTokenDataSource implements TokenDataSource {
   @override
   Future<String?> getRefreshTokenToken() async {
     try {
-      // final value = await _storage.read(key: _keyRefreshToken);
-      // return value;
-      return Future.value("");
+      final preferences = await _preferences;
+      return preferences.getString(_keyRefreshToken);
     } catch (e, s) {
       throw LocalTokenException("Get refresh token", e, s);
     }
@@ -41,8 +40,8 @@ class LocalTokenDataSource implements TokenDataSource {
   @override
   Future setAccessToken(String value) async {
     try {
-      // await _storage.write(key: _keyAccessToken, value: value);
-      return Future.value();
+      final preferences = await _preferences;
+      return preferences.setString(_keyAccessToken, value);
     } catch (e, s) {
       throw LocalTokenException("Setting access token", e, s);
     }
@@ -51,8 +50,8 @@ class LocalTokenDataSource implements TokenDataSource {
   @override
   Future setRefreshToken(String value) async {
     try {
-      // await _storage.write(key: _keyRefreshToken, value: value);
-      return Future.value();
+      final preferences = await _preferences;
+      return preferences.setString(_keyRefreshToken, value);
     } catch (e, s) {
       throw LocalTokenException("Setting refresh token", e, s);
     }
