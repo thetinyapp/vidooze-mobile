@@ -15,4 +15,11 @@ extension AppRouterExtension on BuildContext {
     }
     return Future.value();
   }
+
+  Future<void> replaceRouteStack(List<PageRouteInfo> routes) {
+    if (mounted) {
+      return router.replaceAll(routes);
+    }
+    return Future.value();
+  }
 }

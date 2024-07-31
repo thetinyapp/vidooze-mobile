@@ -9,6 +9,8 @@ abstract class TokenDataSource {
   Future setRefreshToken(String value);
 
   Future<String?> getRefreshTokenToken();
+
+  Future clear();
 }
 
 class LocalTokenDataSource implements TokenDataSource {
@@ -54,6 +56,17 @@ class LocalTokenDataSource implements TokenDataSource {
       return preferences.setString(_keyRefreshToken, value);
     } catch (e, s) {
       throw LocalTokenException("Setting refresh token", e, s);
+    }
+  }
+
+  @override
+  Future clear() async {
+    try {
+      final preferences = await _preferences;
+      await preferences.remove(_keyAccessToken);
+      await preferences.remove(_keyRefreshToken);
+    } catch (e, s) {
+      throw LocalTokenException("Clear token", e, s);
     }
   }
 }
