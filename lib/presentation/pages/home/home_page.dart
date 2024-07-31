@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:vidooze_mobile/presentation/base/base_stateful_page_widget.dart';
+import 'package:vidooze_mobile/presentation/extensions/app_router_extension.dart';
 import 'package:vidooze_mobile/presentation/pages/home/home_page_store.dart';
+import 'package:vidooze_mobile/presentation/router/app_router.dart';
 
 @RoutePage()
 class HomePage extends BaseStatefulPageWidget<HomePageStore> {
@@ -19,7 +21,11 @@ class _HomePageState extends BasePageState<HomePageStore> {
   PreferredSizeWidget? buildAppBar(BuildContext context, HomePageStore store) {
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      title: const Text("Home"),
+      leading: IconButton(
+        icon: const Icon(Icons.person),
+        tooltip: "Profile",
+        onPressed: () => context.goTo(const ProfileRoute()),
+      ),
     );
   }
 
