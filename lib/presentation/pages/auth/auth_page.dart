@@ -87,7 +87,7 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
       width: double.infinity,
       child: OutlinedButton(
         style: theme.style,
-        onPressed: () {},
+        onPressed: () => context.goTo(const SignUpRoute()),
         child: const Text("Create Account"),
       ),
     );
