@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vidooze_mobile/presentation/theme/text_theme.dart';
 
 class AppTheme {
   AppTheme._();
@@ -9,6 +10,7 @@ class AppTheme {
     fontFamily: 'Poppins',
     primaryColor: Colors.blue,
     scaffoldBackgroundColor: const Color.fromARGB(255, 240, 240, 240),
+    textTheme: TTextTheme.lightTheme,
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -16,5 +18,6 @@ class AppTheme {
     brightness: Brightness.dark,
     fontFamily: 'Poppins',
     scaffoldBackgroundColor: const Color.fromARGB(255, 1, 1, 1),
+    textTheme: TTextTheme.darkTheme,
   );
 }
