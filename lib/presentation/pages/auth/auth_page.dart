@@ -57,7 +57,6 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
   }
 
   Widget _buildEmailInput(BuildContext context) {
-    ;
     return TextField(
       style: Theme.of(context).textTheme.titleSmall,
       decoration: InputDecoration(
@@ -66,6 +65,30 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
             Theme.of(context).inputDecorationTheme.floatingLabelStyle,
         labelText: "Email",
         prefixIcon: const Icon(Icons.email_outlined),
+      ),
+    );
+  }
+
+  Widget _buildSubmitButton(BuildContext context) {
+    final theme = Theme.of(context).elevatedButtonTheme;
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        style: theme.style,
+        onPressed: () {},
+        child: const Text("Login"),
+      ),
+    );
+  }
+
+  Widget _buildCreateAccountButton(BuildContext context) {
+    final theme = Theme.of(context).outlinedButtonTheme;
+    return SizedBox(
+      width: double.infinity,
+      child: OutlinedButton(
+        style: theme.style,
+        onPressed: () {},
+        child: const Text("Create Account"),
       ),
     );
   }
@@ -80,6 +103,10 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
           _buildTitle(context),
           const Space(y: 40),
           _buildEmailInput(context),
+          const Space(y: 40),
+          _buildSubmitButton(context),
+          const Space(y: 20),
+          _buildCreateAccountButton(context),
         ],
       ),
     );
