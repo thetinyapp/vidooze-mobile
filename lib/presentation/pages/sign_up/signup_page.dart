@@ -20,9 +20,9 @@ class SignUpPage extends BaseStatefulPageWidget<SignUpPageStore> {
 }
 
 class _SignUpPageState extends BasePageState<SignUpPageStore> {
-  final TextEditingController _controller = TextEditingController();
-
   ReactionDisposer? _eventDisposer;
+
+  bool _isPasswordObscured = true;
 
   @override
   void initState() {
@@ -71,6 +71,7 @@ class _SignUpPageState extends BasePageState<SignUpPageStore> {
 
   Widget _buildPasswordInput(BuildContext context) {
     return TextField(
+      obscureText: _isPasswordObscured,
       style: Theme.of(context).textTheme.titleSmall,
       decoration: InputDecoration(
         border: Theme.of(context).inputDecorationTheme.border,
@@ -78,6 +79,16 @@ class _SignUpPageState extends BasePageState<SignUpPageStore> {
             Theme.of(context).inputDecorationTheme.floatingLabelStyle,
         labelText: "Password",
         prefixIcon: const Icon(Icons.password_outlined),
+        suffixIcon: IconButton(
+          icon: Icon(
+            _isPasswordObscured
+                ? Icons.visibility_off_outlined
+                : Icons.visibility_outlined,
+          ),
+          onPressed: () => setState(() {
+            _isPasswordObscured = !_isPasswordObscured;
+          }),
+        ),
       ),
     );
   }
@@ -153,7 +164,6 @@ class _SignUpPageState extends BasePageState<SignUpPageStore> {
 
   @override
   void dispose() {
-    _controller.dispose();
     _eventDisposer?.call();
     super.dispose();
   }
