@@ -4,8 +4,9 @@ import 'package:vidooze_mobile/domain/repository/app_repository.dart';
 class AppRepositoryImpl implements AppRepository {
   final AppDataSource _appDataSource;
 
-  AppRepositoryImpl({required AppDataSource appDataSource})
-      : _appDataSource = appDataSource;
+  AppRepositoryImpl({
+    required AppDataSource appDataSource,
+  }) : _appDataSource = appDataSource;
 
   @override
   Future init() => _appDataSource.init();
