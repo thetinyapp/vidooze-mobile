@@ -39,44 +39,48 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
         analyticsRepository: locator.get<AnalyticsRepository>(),
       );
 
-  @override
-  PreferredSizeWidget? buildAppBar(BuildContext context, AuthPageStore store) {
-    return AppBar(
-      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      title: const Text("Login"),
+  Widget _buildTitle(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Let's get\nstarted",
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
+        Text(
+          "Login",
+          style:
+              Theme.of(context).textTheme.headlineLarge?.copyWith(fontSize: 80),
+        )
+      ],
+    );
+  }
+
+  Widget _buildEmailInput(BuildContext context) {
+    ;
+    return TextField(
+      style: Theme.of(context).textTheme.titleSmall,
+      decoration: InputDecoration(
+        border: Theme.of(context).inputDecorationTheme.border,
+        floatingLabelStyle:
+            Theme.of(context).inputDecorationTheme.floatingLabelStyle,
+        labelText: "Email",
+        prefixIcon: const Icon(Icons.email_outlined),
+      ),
     );
   }
 
   @override
   Widget buildBody(BuildContext context, AuthPageStore store) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              keyboardType: TextInputType.emailAddress,
-              controller: _controller,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter email',
-              ),
-            ),
-            const Space(
-              y: 20,
-            ),
-            ElevatedButton(
-              style: ButtonStyle(
-                foregroundColor: WidgetStateProperty.all<Color>(Colors.blue),
-              ),
-              onPressed: () {
-                store.login();
-              },
-              child: const Text('Login'),
-            ),
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildTitle(context),
+          const Space(y: 40),
+          _buildEmailInput(context),
+        ],
       ),
     );
   }
