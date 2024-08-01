@@ -104,6 +104,68 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
     );
   }
 
+  Widget _buildOAuthLogin() {
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          height: 60,
+          width: 60,
+          padding: const EdgeInsets.all(3.0),
+          child: const Image(
+            image: AssetImage('assets/icons/google_icon.png'),
+          ),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Colors.white.withOpacity(0.5),
+              width: 1,
+            ),
+          ),
+        ),
+        const Space(x: 30),
+        Container(
+          height: 60,
+          width: 60,
+          padding: const EdgeInsets.all(10.0),
+          child: const Image(
+            image: AssetImage('assets/icons/apple_icon.png'),
+          ),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Colors.white.withOpacity(0.5),
+              width: 1,
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _buildOrSignInWith() {
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          height: 1,
+          width: 50,
+          color: Colors.white.withOpacity(0.5),
+        ),
+        const Space(x: 20),
+        const Text("Or sign in with"),
+        const Space(x: 20),
+        Container(
+          height: 1,
+          width: 50,
+          color: Colors.white.withOpacity(0.5),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget buildBody(BuildContext context, AuthPageStore store) {
     return Padding(
@@ -120,6 +182,10 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
           _buildSubmitButton(context),
           const Space(y: 20),
           _buildCreateAccountButton(context),
+          const Space(y: 30),
+          _buildOrSignInWith(),
+          const Space(y: 30),
+          _buildOAuthLogin(),
         ],
       ),
     );
