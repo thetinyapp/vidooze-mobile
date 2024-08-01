@@ -47,6 +47,7 @@ abstract class BasePageState<T extends BasePageStore>
     return Observer(
       builder: (context) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: buildAppBar(context, store),
           body: SafeArea(
             child: buildBody(context, store),
