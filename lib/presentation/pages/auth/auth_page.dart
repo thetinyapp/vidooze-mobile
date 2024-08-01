@@ -93,6 +93,17 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
     );
   }
 
+  Widget _buildForgetPassword(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Text(
+        "Forget Password ?",
+        textAlign: TextAlign.end,
+        style: Theme.of(context).textTheme.labelLarge,
+      ),
+    );
+  }
+
   @override
   Widget buildBody(BuildContext context, AuthPageStore store) {
     return Padding(
@@ -103,6 +114,8 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
           _buildTitle(context),
           const Space(y: 40),
           _buildEmailInput(context),
+          const Space(y: 10),
+          _buildForgetPassword(context),
           const Space(y: 40),
           _buildSubmitButton(context),
           const Space(y: 20),
