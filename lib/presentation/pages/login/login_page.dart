@@ -7,19 +7,19 @@ import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
 import 'package:vidooze_mobile/presentation/base/base_stateful_page_widget.dart';
 import 'package:vidooze_mobile/presentation/components/space.dart';
 import 'package:vidooze_mobile/presentation/extensions/app_router_extension.dart';
-import 'package:vidooze_mobile/presentation/pages/auth/auth_page_store.dart';
-import 'package:vidooze_mobile/presentation/pages/auth/events/auth_event.dart';
+import 'package:vidooze_mobile/presentation/pages/login/events/login_event.dart';
+import 'package:vidooze_mobile/presentation/pages/login/login_page_store.dart';
 import 'package:vidooze_mobile/presentation/router/app_router.dart';
 
 @RoutePage()
-class AuthPage extends BaseStatefulPageWidget<AuthPageStore> {
-  const AuthPage({super.key}) : super(pageName: "Auth");
+class LoginPage extends BaseStatefulPageWidget<LoginPageStore> {
+  const LoginPage({super.key}) : super(pageName: "Login");
 
   @override
-  BasePageState<AuthPageStore> createState() => _AuthPageState();
+  BasePageState<LoginPageStore> createState() => _AuthPageState();
 }
 
-class _AuthPageState extends BasePageState<AuthPageStore> {
+class _AuthPageState extends BasePageState<LoginPageStore> {
   final TextEditingController _controller = TextEditingController();
 
   ReactionDisposer? _eventDisposer;
@@ -28,13 +28,13 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
   void initState() {
     super.initState();
     _eventDisposer = when(
-      (_) => store.event is AuthSuccess,
+      (_) => store.event is Success,
       () => context.goToAndReplace(const HomeRoute()),
     );
   }
 
   @override
-  AuthPageStore createStore() => AuthPageStore(
+  LoginPageStore createStore() => LoginPageStore(
         authRepository: locator.get<AuthRepository>(),
         analyticsRepository: locator.get<AnalyticsRepository>(),
       );
@@ -167,7 +167,7 @@ class _AuthPageState extends BasePageState<AuthPageStore> {
   }
 
   @override
-  Widget buildBody(BuildContext context, AuthPageStore store) {
+  Widget buildBody(BuildContext context, LoginPageStore store) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
       child: Column(

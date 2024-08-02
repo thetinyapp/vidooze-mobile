@@ -5,7 +5,7 @@ import 'package:vidooze_mobile/domain/entity/error.dart';
 import 'package:vidooze_mobile/domain/repository/analytics_repository.dart';
 import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
 import 'package:vidooze_mobile/presentation/base/base_page_store.dart';
-import 'package:vidooze_mobile/presentation/pages/auth/events/auth_event.dart';
+import 'package:vidooze_mobile/presentation/pages/sign_up/events/signup_event.dart';
 
 // Include generated file
 part 'signup_page_store.g.dart';
@@ -22,7 +22,7 @@ abstract class _SignUpPageStore extends BasePageStore with Store {
   final AnalyticsRepository _analyticsRepository;
 
   @observable
-  AuthEvent event = AuthEvent.idle();
+  SignupEvent event = SignupEvent.idle();
 
   _SignUpPageStore({
     required AuthRepository authRepository,
@@ -33,17 +33,17 @@ abstract class _SignUpPageStore extends BasePageStore with Store {
   _handleLoginSuccess(bool _value) async {
     await _analyticsRepository
         .logEvent(LoginSuccessAnalyticsEvent(type: "form"));
-    event = AuthEvent.success();
+    event = SignupEvent.success();
   }
 
   _handleLoginFailure(BaseError _value) async {
     await _analyticsRepository
         .logEvent(LoginFailureAnalyticsEvent(type: "form"));
-    event = AuthEvent.error("Failed to login");
+    event = SignupEvent.error("Failed to signup");
   }
 
   login() async {
-    event = AuthEvent.authorisationInProgress();
+    event = SignupEvent.authorisationInProgress();
     final result = await executeCall(() => _authRepository.login());
     result
       ..onSuccess(_handleLoginSuccess)

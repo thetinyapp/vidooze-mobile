@@ -13,13 +13,13 @@ mixin _$SignUpPageStore on _SignUpPageStore, Store {
       Atom(name: '_SignUpPageStore.event', context: context);
 
   @override
-  AuthEvent get event {
+  SignupEvent get event {
     _$eventAtom.reportRead();
     return super.event;
   }
 
   @override
-  set event(AuthEvent value) {
+  set event(SignupEvent value) {
     _$eventAtom.reportWrite(value, super.event, () {
       super.event = value;
     });

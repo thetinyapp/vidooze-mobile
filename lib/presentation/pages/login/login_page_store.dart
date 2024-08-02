@@ -5,26 +5,26 @@ import 'package:vidooze_mobile/domain/entity/error.dart';
 import 'package:vidooze_mobile/domain/repository/analytics_repository.dart';
 import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
 import 'package:vidooze_mobile/presentation/base/base_page_store.dart';
-import 'package:vidooze_mobile/presentation/pages/auth/events/auth_event.dart';
+import 'package:vidooze_mobile/presentation/pages/login/events/login_event.dart';
 
 // Include generated file
-part 'auth_page_store.g.dart';
+part 'login_page_store.g.dart';
 
-class AuthPageStore extends _AuthPageStore with _$AuthPageStore {
-  AuthPageStore({
+class LoginPageStore extends _LoginPageStore with _$LoginPageStore {
+  LoginPageStore({
     required super.authRepository,
     required super.analyticsRepository,
   });
 }
 
-abstract class _AuthPageStore extends BasePageStore with Store {
+abstract class _LoginPageStore extends BasePageStore with Store {
   final AuthRepository _authRepository;
   final AnalyticsRepository _analyticsRepository;
 
   @observable
-  AuthEvent event = AuthEvent.idle();
+  LoginEvent event = LoginEvent.idle();
 
-  _AuthPageStore({
+  _LoginPageStore({
     required AuthRepository authRepository,
     required AnalyticsRepository analyticsRepository,
   })  : _authRepository = authRepository,
@@ -33,17 +33,17 @@ abstract class _AuthPageStore extends BasePageStore with Store {
   _handleLoginSuccess(bool _value) async {
     await _analyticsRepository
         .logEvent(LoginSuccessAnalyticsEvent(type: "form"));
-    event = AuthEvent.success();
+    event = LoginEvent.success();
   }
 
   _handleLoginFailure(BaseError _value) async {
     await _analyticsRepository
         .logEvent(LoginFailureAnalyticsEvent(type: "form"));
-    event = AuthEvent.error("Failed to login");
+    event = LoginEvent.error("Failed to login");
   }
 
   login() async {
-    event = AuthEvent.authorisationInProgress();
+    event = LoginEvent.authorisationInProgress();
     final result = await executeCall(() => _authRepository.login());
     result
       ..onSuccess(_handleLoginSuccess)

@@ -20,7 +20,7 @@ class _ProfilePageState extends BasePageState<ProfilePageStore> {
   _handleLogoutClick() async {
     final result = await store.clearToken();
     result
-      ..onSuccess((_) => context.replaceRouteStack([const AuthRoute()]))
+      ..onSuccess((_) => context.replaceRouteStack([const LoginRoute()]))
       ..onFailure((_) => context.showSnackBar(message: "Failed to logout"));
   }
 

@@ -7,13 +7,13 @@ import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
 import 'package:vidooze_mobile/presentation/base/base_stateful_page_widget.dart';
 import 'package:vidooze_mobile/presentation/components/space.dart';
 import 'package:vidooze_mobile/presentation/extensions/app_router_extension.dart';
-import 'package:vidooze_mobile/presentation/pages/auth/events/auth_event.dart';
+import 'package:vidooze_mobile/presentation/pages/sign_up/events/signup_event.dart';
 import 'package:vidooze_mobile/presentation/pages/sign_up/signup_page_store.dart';
 import 'package:vidooze_mobile/presentation/router/app_router.dart';
 
 @RoutePage()
 class SignUpPage extends BaseStatefulPageWidget<SignUpPageStore> {
-  const SignUpPage({super.key}) : super(pageName: "Auth");
+  const SignUpPage({super.key}) : super(pageName: "Signup");
 
   @override
   BasePageState<SignUpPageStore> createState() => _SignUpPageState();
@@ -28,7 +28,7 @@ class _SignUpPageState extends BasePageState<SignUpPageStore> {
   void initState() {
     super.initState();
     _eventDisposer = when(
-      (_) => store.event is AuthSuccess,
+      (_) => store.event is Success,
       () => context.goToAndReplace(const HomeRoute()),
     );
   }

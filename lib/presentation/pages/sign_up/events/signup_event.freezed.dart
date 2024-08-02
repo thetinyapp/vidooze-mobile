@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'auth_event.dart';
+part of 'signup_event.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AuthEvent {
+mixin _$SignupEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
@@ -43,42 +43,42 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthIdle value) idle,
-    required TResult Function(AuthorisationInProgress value)
-        authorisationInProgress,
-    required TResult Function(AuthSuccess value) success,
-    required TResult Function(AuthError value) error,
+    required TResult Function(Idle value) idle,
+    required TResult Function(InProgress value) authorisationInProgress,
+    required TResult Function(Success value) success,
+    required TResult Function(Error value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthIdle value)? idle,
-    TResult? Function(AuthorisationInProgress value)? authorisationInProgress,
-    TResult? Function(AuthSuccess value)? success,
-    TResult? Function(AuthError value)? error,
+    TResult? Function(Idle value)? idle,
+    TResult? Function(InProgress value)? authorisationInProgress,
+    TResult? Function(Success value)? success,
+    TResult? Function(Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthIdle value)? idle,
-    TResult Function(AuthorisationInProgress value)? authorisationInProgress,
-    TResult Function(AuthSuccess value)? success,
-    TResult Function(AuthError value)? error,
+    TResult Function(Idle value)? idle,
+    TResult Function(InProgress value)? authorisationInProgress,
+    TResult Function(Success value)? success,
+    TResult Function(Error value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AuthEventCopyWith<$Res> {
-  factory $AuthEventCopyWith(AuthEvent value, $Res Function(AuthEvent) then) =
-      _$AuthEventCopyWithImpl<$Res, AuthEvent>;
+abstract class $SignupEventCopyWith<$Res> {
+  factory $SignupEventCopyWith(
+          SignupEvent value, $Res Function(SignupEvent) then) =
+      _$SignupEventCopyWithImpl<$Res, SignupEvent>;
 }
 
 /// @nodoc
-class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
-    implements $AuthEventCopyWith<$Res> {
-  _$AuthEventCopyWithImpl(this._value, this._then);
+class _$SignupEventCopyWithImpl<$Res, $Val extends SignupEvent>
+    implements $SignupEventCopyWith<$Res> {
+  _$SignupEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -87,35 +87,34 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
 }
 
 /// @nodoc
-abstract class _$$AuthIdleImplCopyWith<$Res> {
-  factory _$$AuthIdleImplCopyWith(
-          _$AuthIdleImpl value, $Res Function(_$AuthIdleImpl) then) =
-      __$$AuthIdleImplCopyWithImpl<$Res>;
+abstract class _$$IdleImplCopyWith<$Res> {
+  factory _$$IdleImplCopyWith(
+          _$IdleImpl value, $Res Function(_$IdleImpl) then) =
+      __$$IdleImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthIdleImplCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$AuthIdleImpl>
-    implements _$$AuthIdleImplCopyWith<$Res> {
-  __$$AuthIdleImplCopyWithImpl(
-      _$AuthIdleImpl _value, $Res Function(_$AuthIdleImpl) _then)
+class __$$IdleImplCopyWithImpl<$Res>
+    extends _$SignupEventCopyWithImpl<$Res, _$IdleImpl>
+    implements _$$IdleImplCopyWith<$Res> {
+  __$$IdleImplCopyWithImpl(_$IdleImpl _value, $Res Function(_$IdleImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AuthIdleImpl implements AuthIdle {
-  _$AuthIdleImpl();
+class _$IdleImpl implements Idle {
+  _$IdleImpl();
 
   @override
   String toString() {
-    return 'AuthEvent.idle()';
+    return 'SignupEvent.idle()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AuthIdleImpl);
+        (other.runtimeType == runtimeType && other is _$IdleImpl);
   }
 
   @override
@@ -161,11 +160,10 @@ class _$AuthIdleImpl implements AuthIdle {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthIdle value) idle,
-    required TResult Function(AuthorisationInProgress value)
-        authorisationInProgress,
-    required TResult Function(AuthSuccess value) success,
-    required TResult Function(AuthError value) error,
+    required TResult Function(Idle value) idle,
+    required TResult Function(InProgress value) authorisationInProgress,
+    required TResult Function(Success value) success,
+    required TResult Function(Error value) error,
   }) {
     return idle(this);
   }
@@ -173,10 +171,10 @@ class _$AuthIdleImpl implements AuthIdle {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthIdle value)? idle,
-    TResult? Function(AuthorisationInProgress value)? authorisationInProgress,
-    TResult? Function(AuthSuccess value)? success,
-    TResult? Function(AuthError value)? error,
+    TResult? Function(Idle value)? idle,
+    TResult? Function(InProgress value)? authorisationInProgress,
+    TResult? Function(Success value)? success,
+    TResult? Function(Error value)? error,
   }) {
     return idle?.call(this);
   }
@@ -184,10 +182,10 @@ class _$AuthIdleImpl implements AuthIdle {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthIdle value)? idle,
-    TResult Function(AuthorisationInProgress value)? authorisationInProgress,
-    TResult Function(AuthSuccess value)? success,
-    TResult Function(AuthError value)? error,
+    TResult Function(Idle value)? idle,
+    TResult Function(InProgress value)? authorisationInProgress,
+    TResult Function(Success value)? success,
+    TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -197,43 +195,40 @@ class _$AuthIdleImpl implements AuthIdle {
   }
 }
 
-abstract class AuthIdle implements AuthEvent {
-  factory AuthIdle() = _$AuthIdleImpl;
+abstract class Idle implements SignupEvent {
+  factory Idle() = _$IdleImpl;
 }
 
 /// @nodoc
-abstract class _$$AuthorisationInProgressImplCopyWith<$Res> {
-  factory _$$AuthorisationInProgressImplCopyWith(
-          _$AuthorisationInProgressImpl value,
-          $Res Function(_$AuthorisationInProgressImpl) then) =
-      __$$AuthorisationInProgressImplCopyWithImpl<$Res>;
+abstract class _$$InProgressImplCopyWith<$Res> {
+  factory _$$InProgressImplCopyWith(
+          _$InProgressImpl value, $Res Function(_$InProgressImpl) then) =
+      __$$InProgressImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthorisationInProgressImplCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$AuthorisationInProgressImpl>
-    implements _$$AuthorisationInProgressImplCopyWith<$Res> {
-  __$$AuthorisationInProgressImplCopyWithImpl(
-      _$AuthorisationInProgressImpl _value,
-      $Res Function(_$AuthorisationInProgressImpl) _then)
+class __$$InProgressImplCopyWithImpl<$Res>
+    extends _$SignupEventCopyWithImpl<$Res, _$InProgressImpl>
+    implements _$$InProgressImplCopyWith<$Res> {
+  __$$InProgressImplCopyWithImpl(
+      _$InProgressImpl _value, $Res Function(_$InProgressImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AuthorisationInProgressImpl implements AuthorisationInProgress {
-  _$AuthorisationInProgressImpl();
+class _$InProgressImpl implements InProgress {
+  _$InProgressImpl();
 
   @override
   String toString() {
-    return 'AuthEvent.authorisationInProgress()';
+    return 'SignupEvent.authorisationInProgress()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AuthorisationInProgressImpl);
+        (other.runtimeType == runtimeType && other is _$InProgressImpl);
   }
 
   @override
@@ -279,11 +274,10 @@ class _$AuthorisationInProgressImpl implements AuthorisationInProgress {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthIdle value) idle,
-    required TResult Function(AuthorisationInProgress value)
-        authorisationInProgress,
-    required TResult Function(AuthSuccess value) success,
-    required TResult Function(AuthError value) error,
+    required TResult Function(Idle value) idle,
+    required TResult Function(InProgress value) authorisationInProgress,
+    required TResult Function(Success value) success,
+    required TResult Function(Error value) error,
   }) {
     return authorisationInProgress(this);
   }
@@ -291,10 +285,10 @@ class _$AuthorisationInProgressImpl implements AuthorisationInProgress {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthIdle value)? idle,
-    TResult? Function(AuthorisationInProgress value)? authorisationInProgress,
-    TResult? Function(AuthSuccess value)? success,
-    TResult? Function(AuthError value)? error,
+    TResult? Function(Idle value)? idle,
+    TResult? Function(InProgress value)? authorisationInProgress,
+    TResult? Function(Success value)? success,
+    TResult? Function(Error value)? error,
   }) {
     return authorisationInProgress?.call(this);
   }
@@ -302,10 +296,10 @@ class _$AuthorisationInProgressImpl implements AuthorisationInProgress {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthIdle value)? idle,
-    TResult Function(AuthorisationInProgress value)? authorisationInProgress,
-    TResult Function(AuthSuccess value)? success,
-    TResult Function(AuthError value)? error,
+    TResult Function(Idle value)? idle,
+    TResult Function(InProgress value)? authorisationInProgress,
+    TResult Function(Success value)? success,
+    TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
     if (authorisationInProgress != null) {
@@ -315,40 +309,40 @@ class _$AuthorisationInProgressImpl implements AuthorisationInProgress {
   }
 }
 
-abstract class AuthorisationInProgress implements AuthEvent {
-  factory AuthorisationInProgress() = _$AuthorisationInProgressImpl;
+abstract class InProgress implements SignupEvent {
+  factory InProgress() = _$InProgressImpl;
 }
 
 /// @nodoc
-abstract class _$$AuthSuccessImplCopyWith<$Res> {
-  factory _$$AuthSuccessImplCopyWith(
-          _$AuthSuccessImpl value, $Res Function(_$AuthSuccessImpl) then) =
-      __$$AuthSuccessImplCopyWithImpl<$Res>;
+abstract class _$$SuccessImplCopyWith<$Res> {
+  factory _$$SuccessImplCopyWith(
+          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
+      __$$SuccessImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthSuccessImplCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$AuthSuccessImpl>
-    implements _$$AuthSuccessImplCopyWith<$Res> {
-  __$$AuthSuccessImplCopyWithImpl(
-      _$AuthSuccessImpl _value, $Res Function(_$AuthSuccessImpl) _then)
+class __$$SuccessImplCopyWithImpl<$Res>
+    extends _$SignupEventCopyWithImpl<$Res, _$SuccessImpl>
+    implements _$$SuccessImplCopyWith<$Res> {
+  __$$SuccessImplCopyWithImpl(
+      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AuthSuccessImpl implements AuthSuccess {
-  _$AuthSuccessImpl();
+class _$SuccessImpl implements Success {
+  _$SuccessImpl();
 
   @override
   String toString() {
-    return 'AuthEvent.success()';
+    return 'SignupEvent.success()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AuthSuccessImpl);
+        (other.runtimeType == runtimeType && other is _$SuccessImpl);
   }
 
   @override
@@ -394,11 +388,10 @@ class _$AuthSuccessImpl implements AuthSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthIdle value) idle,
-    required TResult Function(AuthorisationInProgress value)
-        authorisationInProgress,
-    required TResult Function(AuthSuccess value) success,
-    required TResult Function(AuthError value) error,
+    required TResult Function(Idle value) idle,
+    required TResult Function(InProgress value) authorisationInProgress,
+    required TResult Function(Success value) success,
+    required TResult Function(Error value) error,
   }) {
     return success(this);
   }
@@ -406,10 +399,10 @@ class _$AuthSuccessImpl implements AuthSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthIdle value)? idle,
-    TResult? Function(AuthorisationInProgress value)? authorisationInProgress,
-    TResult? Function(AuthSuccess value)? success,
-    TResult? Function(AuthError value)? error,
+    TResult? Function(Idle value)? idle,
+    TResult? Function(InProgress value)? authorisationInProgress,
+    TResult? Function(Success value)? success,
+    TResult? Function(Error value)? error,
   }) {
     return success?.call(this);
   }
@@ -417,10 +410,10 @@ class _$AuthSuccessImpl implements AuthSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthIdle value)? idle,
-    TResult Function(AuthorisationInProgress value)? authorisationInProgress,
-    TResult Function(AuthSuccess value)? success,
-    TResult Function(AuthError value)? error,
+    TResult Function(Idle value)? idle,
+    TResult Function(InProgress value)? authorisationInProgress,
+    TResult Function(Success value)? success,
+    TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -430,25 +423,25 @@ class _$AuthSuccessImpl implements AuthSuccess {
   }
 }
 
-abstract class AuthSuccess implements AuthEvent {
-  factory AuthSuccess() = _$AuthSuccessImpl;
+abstract class Success implements SignupEvent {
+  factory Success() = _$SuccessImpl;
 }
 
 /// @nodoc
-abstract class _$$AuthErrorImplCopyWith<$Res> {
-  factory _$$AuthErrorImplCopyWith(
-          _$AuthErrorImpl value, $Res Function(_$AuthErrorImpl) then) =
-      __$$AuthErrorImplCopyWithImpl<$Res>;
+abstract class _$$ErrorImplCopyWith<$Res> {
+  factory _$$ErrorImplCopyWith(
+          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
+      __$$ErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$AuthErrorImplCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$AuthErrorImpl>
-    implements _$$AuthErrorImplCopyWith<$Res> {
-  __$$AuthErrorImplCopyWithImpl(
-      _$AuthErrorImpl _value, $Res Function(_$AuthErrorImpl) _then)
+class __$$ErrorImplCopyWithImpl<$Res>
+    extends _$SignupEventCopyWithImpl<$Res, _$ErrorImpl>
+    implements _$$ErrorImplCopyWith<$Res> {
+  __$$ErrorImplCopyWithImpl(
+      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -456,7 +449,7 @@ class __$$AuthErrorImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$AuthErrorImpl(
+    return _then(_$ErrorImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -467,22 +460,22 @@ class __$$AuthErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthErrorImpl implements AuthError {
-  _$AuthErrorImpl(this.message);
+class _$ErrorImpl implements Error {
+  _$ErrorImpl(this.message);
 
   @override
   final String message;
 
   @override
   String toString() {
-    return 'AuthEvent.error(message: $message)';
+    return 'SignupEvent.error(message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthErrorImpl &&
+            other is _$ErrorImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -492,8 +485,8 @@ class _$AuthErrorImpl implements AuthError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthErrorImplCopyWith<_$AuthErrorImpl> get copyWith =>
-      __$$AuthErrorImplCopyWithImpl<_$AuthErrorImpl>(this, _$identity);
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -535,11 +528,10 @@ class _$AuthErrorImpl implements AuthError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthIdle value) idle,
-    required TResult Function(AuthorisationInProgress value)
-        authorisationInProgress,
-    required TResult Function(AuthSuccess value) success,
-    required TResult Function(AuthError value) error,
+    required TResult Function(Idle value) idle,
+    required TResult Function(InProgress value) authorisationInProgress,
+    required TResult Function(Success value) success,
+    required TResult Function(Error value) error,
   }) {
     return error(this);
   }
@@ -547,10 +539,10 @@ class _$AuthErrorImpl implements AuthError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthIdle value)? idle,
-    TResult? Function(AuthorisationInProgress value)? authorisationInProgress,
-    TResult? Function(AuthSuccess value)? success,
-    TResult? Function(AuthError value)? error,
+    TResult? Function(Idle value)? idle,
+    TResult? Function(InProgress value)? authorisationInProgress,
+    TResult? Function(Success value)? success,
+    TResult? Function(Error value)? error,
   }) {
     return error?.call(this);
   }
@@ -558,10 +550,10 @@ class _$AuthErrorImpl implements AuthError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthIdle value)? idle,
-    TResult Function(AuthorisationInProgress value)? authorisationInProgress,
-    TResult Function(AuthSuccess value)? success,
-    TResult Function(AuthError value)? error,
+    TResult Function(Idle value)? idle,
+    TResult Function(InProgress value)? authorisationInProgress,
+    TResult Function(Success value)? success,
+    TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -571,11 +563,11 @@ class _$AuthErrorImpl implements AuthError {
   }
 }
 
-abstract class AuthError implements AuthEvent {
-  factory AuthError(final String message) = _$AuthErrorImpl;
+abstract class Error implements SignupEvent {
+  factory Error(final String message) = _$ErrorImpl;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$AuthErrorImplCopyWith<_$AuthErrorImpl> get copyWith =>
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
