@@ -75,7 +75,7 @@ class _AuthPageState extends BasePageState<LoginPageStore> {
       width: double.infinity,
       child: ElevatedButton(
         style: theme.style,
-        onPressed: () {},
+        onPressed: () => store.login(),
         child: const Text("Login"),
       ),
     );
