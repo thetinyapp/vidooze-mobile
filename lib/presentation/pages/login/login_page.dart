@@ -7,7 +7,7 @@ import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
 import 'package:vidooze_mobile/presentation/base/base_stateful_page_widget.dart';
 import 'package:vidooze_mobile/presentation/components/space.dart';
 import 'package:vidooze_mobile/presentation/extensions/app_router_extension.dart';
-import 'package:vidooze_mobile/presentation/pages/login/events/login_event.dart';
+import 'package:vidooze_mobile/presentation/extensions/widget_extension.dart';
 import 'package:vidooze_mobile/presentation/pages/login/login_page_store.dart';
 import 'package:vidooze_mobile/presentation/router/app_router.dart';
 import 'package:vidooze_mobile/presentation/utils/form_validation_rules.dart';
@@ -23,16 +23,25 @@ class LoginPage extends BaseStatefulPageWidget<LoginPageStore> {
 class _AuthPageState extends BasePageState<LoginPageStore> {
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   ReactionDisposer? _eventDisposer;
 
   @override
   void initState() {
     super.initState();
-    _eventDisposer = when(
-      (_) => store.event is Success,
-      () => context.goToAndReplace(const HomeRoute()),
+    disposers.add(
+      reaction(
+        (_) => store.event,
+        (_) {
+          store.event.maybeWhen(
+            success: () => context.goToAndReplace(const HomeRoute()),
+            error: (message) => context.showSnackBar(message: message),
+            orElse: () {},
+          );
+        },
+      ),
     );
   }
 
@@ -63,6 +72,7 @@ class _AuthPageState extends BasePageState<LoginPageStore> {
     return Focus(
       onFocusChange: (value) => !value ? setState(() {}) : null,
       child: TextFormField(
+        controller: _emailController,
         style: Theme.of(context).textTheme.titleSmall,
         decoration: InputDecoration(
           border: Theme.of(context).inputDecorationTheme.border,
@@ -90,6 +100,7 @@ class _AuthPageState extends BasePageState<LoginPageStore> {
 
   Widget _buildPasswordInput(BuildContext context) {
     return TextFormField(
+      controller: _passwordController,
       obscureText: true,
       style: Theme.of(context).textTheme.titleSmall,
       decoration: InputDecoration(
@@ -99,29 +110,6 @@ class _AuthPageState extends BasePageState<LoginPageStore> {
         labelText: "Password",
         prefixIcon: const Icon(Icons.password_outlined),
       ),
-      validator: (value) {
-        final sanitizedValue = value?.trim() ?? "";
-        final validation1 = ValidationRules.passwordRequiredValidation;
-        if (sanitizedValue.isEmpty) {
-          return validation1.message;
-        }
-
-        final validation2 = ValidationRules.minPasswordLengthValidation;
-        if (sanitizedValue.length < validation2.value) {
-          return validation2.message;
-        }
-
-        final validation3 = ValidationRules.maxPasswordLengthValidation;
-        if (sanitizedValue.length > validation3.value) {
-          return validation3.message;
-        }
-
-        final validation4 = ValidationRules.passwordValidation;
-        if (validation4.value.hasMatch(sanitizedValue)) {
-          return validation4.message;
-        }
-        return null;
-      },
     );
   }
 
@@ -131,7 +119,12 @@ class _AuthPageState extends BasePageState<LoginPageStore> {
       width: double.infinity,
       child: ElevatedButton(
         style: theme.style,
-        onPressed: _isFormValid() ? store.login : null,
+        onPressed: () {
+          store.login(
+            email: _emailController.text,
+            password: _passwordController.text,
+          );
+        },
         child: const Text("Login"),
       ),
     );
@@ -268,7 +261,8 @@ class _AuthPageState extends BasePageState<LoginPageStore> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     _eventDisposer?.call();
     super.dispose();
   }

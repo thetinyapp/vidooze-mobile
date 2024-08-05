@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:vidooze_mobile/data/dto/request/login_request.dart';
 import 'package:vidooze_mobile/data/dto/response/login_response/login_response.dart';
 
 part 'rest_client.g.dart';
@@ -12,8 +13,8 @@ abstract class RestClient {
     String baseUrl,
   }) = _RestClient;
 
-  @GET('/b18df0d96a17c30c8f08')
-  Future<LoginResponse> login();
+  @POST('/user-sessions/authenticate')
+  Future<LoginResponse> login(@Body() LoginRequest request);
 }
 
 Dio buildClient({required String baseUrl}) {

@@ -19,20 +19,21 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<LoginResponse> login() async {
+  Future<LoginResponse> login(LoginRequest request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<LoginResponse>(Options(
-      method: 'GET',
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/b18df0d96a17c30c8f08',
+              '/user-sessions/authenticate',
               queryParameters: queryParameters,
               data: _data,
             )

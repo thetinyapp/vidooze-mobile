@@ -30,21 +30,22 @@ abstract class _LoginPageStore extends BasePageStore with Store {
   })  : _authRepository = authRepository,
         _analyticsRepository = analyticsRepository;
 
-  _handleLoginSuccess(bool _value) async {
+  _handleLoginSuccess(_) async {
     await _analyticsRepository
         .logEvent(LoginSuccessAnalyticsEvent(type: "form"));
     event = LoginEvent.success();
   }
 
-  _handleLoginFailure(BaseError _value) async {
+  _handleLoginFailure(BaseError value) async {
     await _analyticsRepository
         .logEvent(LoginFailureAnalyticsEvent(type: "form"));
-    event = LoginEvent.error("Failed to login");
+    event = LoginEvent.error(value.message);
   }
 
-  login() async {
+  login({required String email, required String password}) async {
     event = LoginEvent.authorisationInProgress();
-    final result = await executeCall(() => _authRepository.login());
+    final result = await executeCall(
+        () => _authRepository.login(email: email, password: password));
     result
       ..onSuccess(_handleLoginSuccess)
       ..onFailure(_handleLoginFailure);

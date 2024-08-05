@@ -44,9 +44,9 @@ abstract class _SignUpPageStore extends BasePageStore with Store {
 
   login() async {
     event = SignupEvent.authorisationInProgress();
-    final result = await executeCall(() => _authRepository.login());
-    result
-      ..onSuccess(_handleLoginSuccess)
-      ..onFailure(_handleLoginFailure);
+    // final result = await executeCall(() => _authRepository.login());
+    // result
+    //   ..onSuccess(_handleLoginSuccess)
+    //   ..onFailure(_handleLoginFailure);
   }
 }
