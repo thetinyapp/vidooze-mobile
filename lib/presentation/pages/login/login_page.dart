@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mobx/mobx.dart';
 import 'package:vidooze_mobile/di/configure_di.dart';
 import 'package:vidooze_mobile/domain/repository/analytics_repository.dart';
@@ -36,8 +37,20 @@ class _AuthPageState extends BasePageState<LoginPageStore> {
         (_) => store.event,
         (_) {
           store.event.maybeWhen(
-            success: () => context.goToAndReplace(const HomeRoute()),
-            error: (message) => context.showSnackBar(message: message),
+            authorisationInProgress: () {
+              FocusManager.instance.primaryFocus?.unfocus();
+              context.loaderOverlay.show();
+            },
+            success: () {
+              context
+                ..loaderOverlay.hide()
+                ..goToAndReplace(const HomeRoute());
+            },
+            error: (message) {
+              context
+                ..loaderOverlay.hide()
+                ..showSnackBar(message: message);
+            },
             orElse: () {},
           );
         },
@@ -238,21 +251,23 @@ class _AuthPageState extends BasePageState<LoginPageStore> {
 
   @override
   Widget buildBody(BuildContext context, LoginPageStore store) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildTitle(context),
-          const Space(y: 40),
-          _buildForm(context),
-          const Space(y: 20),
-          _buildCreateAccountButton(context),
-          const Space(y: 30),
-          _buildOrSignInWith(),
-          const Space(y: 30),
-          _buildOAuthLogin(),
-        ],
+    return LoaderOverlay(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildTitle(context),
+            const Space(y: 40),
+            _buildForm(context),
+            const Space(y: 20),
+            _buildCreateAccountButton(context),
+            const Space(y: 30),
+            _buildOrSignInWith(),
+            const Space(y: 30),
+            _buildOAuthLogin(),
+          ],
+        ),
       ),
     );
   }
