@@ -9,4 +9,10 @@ extension WidgetExtension on BuildContext {
       ScaffoldMessenger.of(this).showSnackBar(snackBar);
     }
   }
+
+  clearFocus() {
+    if (mounted) {
+      FocusManager.instance.primaryFocus?.unfocus();
+    }
+  }
 }

@@ -38,8 +38,9 @@ class _AuthPageState extends BasePageState<LoginPageStore> {
         (_) {
           store.event.maybeWhen(
             authorisationInProgress: () {
-              FocusManager.instance.primaryFocus?.unfocus();
-              context.loaderOverlay.show();
+              context
+                ..clearFocus()
+                ..loaderOverlay.show();
             },
             success: () {
               context
