@@ -6,4 +6,11 @@ abstract class AuthRepository<E extends BaseError> {
     required String email,
     required String password,
   });
+
+  Future<Result<bool, E>> signup({
+    required String email,
+    required String password,
+    required String firstName,
+    required String lastName,
+  });
 }

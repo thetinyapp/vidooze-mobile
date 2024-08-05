@@ -1,7 +1,8 @@
 import 'package:result_dart/src/result.dart';
 import 'package:vidooze_mobile/data/data_sources/auth_data_source.dart';
 import 'package:vidooze_mobile/data/data_sources/token_data_source.dart';
-import 'package:vidooze_mobile/data/dto/request/login_request.dart';
+import 'package:vidooze_mobile/data/dto/request/login_request/login_request.dart';
+import 'package:vidooze_mobile/data/dto/request/signup_request/signup_request.dart';
 import 'package:vidooze_mobile/data/repository/base_repository.dart';
 import 'package:vidooze_mobile/domain/entity/error.dart';
 import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
@@ -25,6 +26,30 @@ class AuthRepositoryImpl extends BaseRepository implements AuthRepository {
     return await parseOrError(() async {
       final result = await _authDataSource.login(
         request: LoginRequest(email: email, password: password),
+      );
+      _saveToken(
+        accessToken: result.data.token.accessToken,
+        refreshToken: result.data.token.refreshToken,
+      );
+      return true;
+    });
+  }
+
+  @override
+  Future<Result<bool, BaseError>> signup({
+    required String email,
+    required String password,
+    required String firstName,
+    required String lastName,
+  }) async {
+    return await parseOrError(() async {
+      final result = await _authDataSource.signup(
+        request: SignupRequest(
+          email: email,
+          password: password,
+          firstName: firstName,
+          lastName: lastName,
+        ),
       );
       _saveToken(
         accessToken: result.data.token.accessToken,
