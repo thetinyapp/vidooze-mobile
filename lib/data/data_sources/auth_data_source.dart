@@ -2,11 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:vidooze_mobile/data/data_sources/base_remote_data_source.dart';
 import 'package:vidooze_mobile/data/dto/exception/login_exception.dart';
 import 'package:vidooze_mobile/data/dto/request/login_request.dart';
+import 'package:vidooze_mobile/data/dto/response/api_response/api_response.dart';
 import 'package:vidooze_mobile/data/dto/response/login_response/login_response.dart';
 import 'package:vidooze_mobile/data/network/rest_client.dart';
 
 abstract class AuthDataSource {
-  Future<LoginResponse> login({
+  Future<ApiResponse<LoginResponse>> login({
     required LoginRequest request,
   });
 }
@@ -19,7 +20,7 @@ class AuthDataSourceImpl extends BaseRemoteDataSource
       : _restClient = restClient;
 
   @override
-  Future<LoginResponse> login({
+  Future<ApiResponse<LoginResponse>> login({
     required LoginRequest request,
   }) async {
     try {

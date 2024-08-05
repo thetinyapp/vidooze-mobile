@@ -27,8 +27,8 @@ class AuthRepositoryImpl extends BaseRepository implements AuthRepository {
         request: LoginRequest(email: email, password: password),
       );
       _saveToken(
-        accessToken: result.accessToken,
-        refreshToken: result.refreshToken,
+        accessToken: result.data.token.accessToken,
+        refreshToken: result.data.token.refreshToken,
       );
       return true;
     });
