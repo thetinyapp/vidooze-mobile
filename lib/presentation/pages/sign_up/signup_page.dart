@@ -136,9 +136,16 @@ class _SignUpPageState extends BasePageState<SignUpPageStore> {
   }
 
   @override
+  PreferredSizeWidget? buildAppBar(
+          BuildContext context, SignUpPageStore store) =>
+      AppBar(
+        backgroundColor: Colors.transparent,
+      );
+
+  @override
   Widget buildBody(BuildContext context, SignUpPageStore store) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
