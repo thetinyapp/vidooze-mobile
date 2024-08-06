@@ -39,10 +39,12 @@ KeyMomentResponse _$KeyMomentResponseFromJson(Map<String, dynamic> json) =>
     KeyMomentResponse(
       timestamp: json['timestamp'] as String,
       title: json['title'] as String,
+      uuid: json['uuid'] as String,
     );
 
 Map<String, dynamic> _$KeyMomentResponseToJson(KeyMomentResponse instance) =>
     <String, dynamic>{
       'timestamp': instance.timestamp,
       'title': instance.title,
+      'uuid': instance.uuid,
     };

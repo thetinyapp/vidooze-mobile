@@ -52,9 +52,13 @@ class KeyMomentResponse {
   @JsonKey(name: "title")
   final String title;
 
+  @JsonKey(name: "uuid")
+  final String uuid;
+
   KeyMomentResponse({
     required this.timestamp,
     required this.title,
+    required this.uuid,
   });
 
   factory KeyMomentResponse.fromJson(Map<String, dynamic> json) =>
