@@ -19,6 +19,7 @@ Map<String, dynamic> _$SummarizerResponseToJson(SummarizerResponse instance) =>
 
 SynopsisResponse _$SynopsisResponseFromJson(Map<String, dynamic> json) =>
     SynopsisResponse(
+      uuid: json['uuid'] as String,
       summary: json['summary'] as String,
       synopsis: json['synopsis'] as String,
       title: json['title'] as String,
@@ -29,6 +30,7 @@ SynopsisResponse _$SynopsisResponseFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$SynopsisResponseToJson(SynopsisResponse instance) =>
     <String, dynamic>{
+      'uuid': instance.uuid,
       'summary': instance.summary,
       'synopsis': instance.synopsis,
       'title': instance.title,

@@ -4,6 +4,7 @@ class Summary {
   final String title;
   final String summary;
   final String synopsis;
+  final String id;
   final List<KeyMoment> keyMoments;
 
   Summary({
@@ -11,10 +12,12 @@ class Summary {
     required this.summary,
     required this.synopsis,
     required this.keyMoments,
+    required this.id,
   });
 
   factory Summary.fromSynopsisResponse(SynopsisResponse response) {
     return Summary(
+      id: response.uuid,
       title: response.title,
       summary: response.summary,
       synopsis: response.synopsis,

@@ -4,6 +4,7 @@ import 'package:vidooze_mobile/presentation/pages/login//login_page.dart';
 import 'package:vidooze_mobile/presentation/pages/profile/profile_page.dart';
 import 'package:vidooze_mobile/presentation/pages/sign_up/signup_page.dart';
 import 'package:vidooze_mobile/presentation/pages/splash/splash_page.dart';
+import 'package:vidooze_mobile/presentation/pages/summary/summary_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -16,5 +17,6 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: SignUpRoute.page),
         AutoRoute(page: HomeRoute.page),
         AutoRoute(page: ProfileRoute.page),
+        AutoRoute(page: SummaryRoute.page),
       ];
 }

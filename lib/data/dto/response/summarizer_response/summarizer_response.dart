@@ -19,6 +19,9 @@ class SummarizerResponse {
 
 @JsonSerializable()
 class SynopsisResponse {
+  @JsonKey(name: "uuid")
+  final String uuid;
+
   @JsonKey(name: "summary")
   final String summary;
 
@@ -32,6 +35,7 @@ class SynopsisResponse {
   final List<KeyMomentResponse> keyMoments;
 
   SynopsisResponse({
+    required this.uuid,
     required this.summary,
     required this.synopsis,
     required this.title,
