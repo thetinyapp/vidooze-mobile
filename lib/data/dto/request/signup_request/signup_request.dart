@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'signup_request.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class SignupRequest {
   @JsonKey(name: "email")
   final String email;
@@ -19,9 +19,6 @@ class SignupRequest {
     required this.firstName,
     required this.lastName,
   });
-
-  factory SignupRequest.fromJson(Map<String, dynamic> json) =>
-      _$SignupRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$SignupRequestToJson(this);
 }

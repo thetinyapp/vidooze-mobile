@@ -1,15 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'signup_request.dart';
+part of 'summarizer_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$SignupRequestToJson(SignupRequest instance) =>
+Map<String, dynamic> _$SummarizerRequestToJson(SummarizerRequest instance) =>
     <String, dynamic>{
-      'email': instance.email,
-      'password': instance.password,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
+      'videoUrl': instance.videoUrl,
     };
