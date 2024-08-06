@@ -12,6 +12,7 @@ import 'package:vidooze_mobile/data/repository/analytics_repository_impl.dart';
 import 'package:vidooze_mobile/data/repository/app_repository_impl.dart';
 import 'package:vidooze_mobile/data/repository/auth_repository_impl.dart';
 import 'package:vidooze_mobile/data/repository/error_reporting_repository_impl.dart';
+import 'package:vidooze_mobile/data/repository/summarizer_repository_impl.dart';
 import 'package:vidooze_mobile/data/repository/theme_repository_impl.dart';
 import 'package:vidooze_mobile/data/repository/token_repository_impl.dart';
 import 'package:vidooze_mobile/data/repository/user_repository_impl.dart';
@@ -19,6 +20,7 @@ import 'package:vidooze_mobile/domain/repository/analytics_repository.dart';
 import 'package:vidooze_mobile/domain/repository/app_repository.dart';
 import 'package:vidooze_mobile/domain/repository/auth_repository.dart';
 import 'package:vidooze_mobile/domain/repository/error_reporting_repository.dart';
+import 'package:vidooze_mobile/domain/repository/summarizer_repository.dart';
 import 'package:vidooze_mobile/domain/repository/theme_repository.dart';
 import 'package:vidooze_mobile/domain/repository/token_repository.dart';
 import 'package:vidooze_mobile/domain/repository/user_repository.dart';
@@ -109,6 +111,12 @@ void _setupRepository() {
     () => TokenRepositoryImpl(
       errorReportingDataSource: locator.get<ErrorReportingDataSource>(),
       tokenDataSource: locator.get<TokenDataSource>(),
+    ),
+  );
+  locator.registerLazySingleton<SummarizerRepository>(
+    () => SummarizerRepositoryImpl(
+      errorReportingDataSource: locator.get<ErrorReportingDataSource>(),
+      dataSource: locator.get<SummarizerDataSource>(),
     ),
   );
 }
