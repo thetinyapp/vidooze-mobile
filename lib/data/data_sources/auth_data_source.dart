@@ -39,8 +39,9 @@ class AuthDataSourceImpl extends BaseRemoteDataSource
   }
 
   @override
-  Future<ApiResponse<SignupResponse>> signup(
-      {required SignupRequest request}) async {
+  Future<ApiResponse<SignupResponse>> signup({
+    required SignupRequest request,
+  }) async {
     try {
       return await _restClient.signup(request);
     } catch (e, s) {

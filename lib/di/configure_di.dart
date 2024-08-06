@@ -4,6 +4,7 @@ import 'package:vidooze_mobile/data/data_sources/analytics_data_source.dart';
 import 'package:vidooze_mobile/data/data_sources/auth_data_source.dart';
 import 'package:vidooze_mobile/data/data_sources/error_reporting_data_source.dart';
 import 'package:vidooze_mobile/data/data_sources/firebase_app_data_source.dart';
+import 'package:vidooze_mobile/data/data_sources/summarizer_data_source.dart';
 import 'package:vidooze_mobile/data/data_sources/theme_data_source.dart';
 import 'package:vidooze_mobile/data/data_sources/token_data_source.dart';
 import 'package:vidooze_mobile/data/network/rest_client.dart';
@@ -53,10 +54,14 @@ void _setupDataSource() {
       restClient: locator.get<RestClient>(),
     ),
   );
+  locator.registerLazySingleton<SummarizerDataSource>(
+    () => SummarizerDataSourceImpl(
+      restClient: locator.get<RestClient>(),
+    ),
+  );
   locator.registerLazySingleton<TokenDataSource>(
     () => LocalTokenDataSource(),
   );
-
   locator.registerLazySingleton<AnalyticsDataSource>(
     () => FirebaseAnalyticsDataSource(),
   );
