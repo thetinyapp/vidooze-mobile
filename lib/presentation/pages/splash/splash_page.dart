@@ -23,7 +23,9 @@ class _SplashPageState extends BasePageState<SplashPageStore> {
     super.initState();
     disposers.add(reaction((_) => store.event, (event) {
       event.maybeWhen(
-        authorised: () => context.goToAndReplace(const HomeRoute()),
+        authorised: () => context.goToAndReplace(
+          SummaryRoute(videoUrl: "https://www.youtube.com/watch?v=nIg2Jn_45zc"),
+        ),
         unauthorised: () => context.goToAndReplace(const LoginRoute()),
         orElse: () => {},
       );

@@ -4,6 +4,7 @@ import 'package:vidooze_mobile/di/configure_di.dart';
 import 'package:vidooze_mobile/domain/repository/analytics_repository.dart';
 import 'package:vidooze_mobile/domain/repository/summarizer_repository.dart';
 import 'package:vidooze_mobile/presentation/base/base_stateful_page_widget.dart';
+import 'package:vidooze_mobile/presentation/pages/summary/components/summary_loader.dart';
 import 'package:vidooze_mobile/presentation/pages/summary/summary_page_store.dart';
 
 @RoutePage()
@@ -20,7 +21,7 @@ class SummaryPage extends BaseStatefulPageWidget<SummaryPageStore> {
 class _SummaryPageState extends BasePageState<SummaryPageStore> {
   @override
   Widget buildBody(BuildContext context, SummaryPageStore store) {
-    return Container();
+    return SummaryLoader();
   }
 
   @override
