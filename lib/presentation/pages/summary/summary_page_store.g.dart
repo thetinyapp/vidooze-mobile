@@ -25,10 +25,41 @@ mixin _$SummaryPageStore on _SummaryPageStore, Store {
     });
   }
 
+  late final _$selectedTabAtom =
+      Atom(name: '_SummaryPageStore.selectedTab', context: context);
+
+  @override
+  SummarizerTab get selectedTab {
+    _$selectedTabAtom.reportRead();
+    return super.selectedTab;
+  }
+
+  @override
+  set selectedTab(SummarizerTab value) {
+    _$selectedTabAtom.reportWrite(value, super.selectedTab, () {
+      super.selectedTab = value;
+    });
+  }
+
+  late final _$_SummaryPageStoreActionController =
+      ActionController(name: '_SummaryPageStore', context: context);
+
+  @override
+  dynamic selectTab(SummarizerTab tab) {
+    final _$actionInfo = _$_SummaryPageStoreActionController.startAction(
+        name: '_SummaryPageStore.selectTab');
+    try {
+      return super.selectTab(tab);
+    } finally {
+      _$_SummaryPageStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
-event: ${event}
+event: ${event},
+selectedTab: ${selectedTab}
     ''';
   }
 }

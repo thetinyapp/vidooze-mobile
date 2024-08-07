@@ -5,6 +5,7 @@ import 'package:vidooze_mobile/domain/repository/analytics_repository.dart';
 import 'package:vidooze_mobile/domain/repository/summarizer_repository.dart';
 import 'package:vidooze_mobile/presentation/base/base_page_store.dart';
 import 'package:vidooze_mobile/presentation/pages/summary/events/summary_event.dart';
+import 'package:vidooze_mobile/presentation/pages/summary/model/summarizer_tab.dart';
 
 // Include generated file
 part 'summary_page_store.g.dart';
@@ -20,6 +21,9 @@ class SummaryPageStore extends _SummaryPageStore with _$SummaryPageStore {
 abstract class _SummaryPageStore extends BasePageStore with Store {
   @observable
   SummaryEvent event = SummaryEvent.inProgress();
+
+  @observable
+  SummarizerTab selectedTab = SummarizerTab.keyMoments;
 
   final AnalyticsRepository _analyticsRepository;
   final SummarizerRepository _summarizerRepository;
@@ -38,6 +42,9 @@ abstract class _SummaryPageStore extends BasePageStore with Store {
     super.initState();
     _summarize();
   }
+
+  @action
+  selectTab(SummarizerTab tab) => selectedTab = tab;
 
   _summarize() async {
     final result = await executeCall(
