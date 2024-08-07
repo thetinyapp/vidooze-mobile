@@ -8,6 +8,7 @@ import 'package:vidooze_mobile/presentation/components/space.dart';
 import 'package:vidooze_mobile/presentation/pages/summary/components/header.dart';
 import 'package:vidooze_mobile/presentation/pages/summary/components/key_moments_ui.dart';
 import 'package:vidooze_mobile/presentation/pages/summary/components/summarizer_title.dart';
+import 'package:vidooze_mobile/presentation/pages/summary/components/summary_loader.dart';
 import 'package:vidooze_mobile/presentation/pages/summary/components/summary_search_ui.dart';
 import 'package:vidooze_mobile/presentation/pages/summary/components/summary_ui.dart';
 import 'package:vidooze_mobile/presentation/pages/summary/model/summarizer_tab.dart';
@@ -57,15 +58,19 @@ class _SummaryPageState extends BasePageState<SummaryPageStore> {
 
   @override
   Widget buildBody(BuildContext context, SummaryPageStore store) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SummaryHeader(
-          selectedTab: store.selectedTab,
-          onSelected: store.selectTab,
-        ),
-        _buildContent()
-      ],
+    return store.event.when(
+      inProgress: () => const SummaryLoader(),
+      error: (message) => Text(message),
+      success: (_) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SummaryHeader(
+            selectedTab: store.selectedTab,
+            onSelected: store.selectTab,
+          ),
+          _buildContent()
+        ],
+      ),
     );
   }
 
