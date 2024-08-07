@@ -9,6 +9,14 @@ part of 'summary_page_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$SummaryPageStore on _SummaryPageStore, Store {
+  Computed<String>? _$pageTitleComputed;
+
+  @override
+  String get pageTitle =>
+      (_$pageTitleComputed ??= Computed<String>(() => super.pageTitle,
+              name: '_SummaryPageStore.pageTitle'))
+          .value;
+
   late final _$eventAtom =
       Atom(name: '_SummaryPageStore.event', context: context);
 
@@ -59,7 +67,8 @@ mixin _$SummaryPageStore on _SummaryPageStore, Store {
   String toString() {
     return '''
 event: ${event},
-selectedTab: ${selectedTab}
+selectedTab: ${selectedTab},
+pageTitle: ${pageTitle}
     ''';
   }
 }

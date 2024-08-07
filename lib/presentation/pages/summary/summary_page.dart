@@ -1,5 +1,5 @@
 import 'package:auto_route/annotations.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:vidooze_mobile/di/configure_di.dart';
 import 'package:vidooze_mobile/domain/repository/analytics_repository.dart';
 import 'package:vidooze_mobile/domain/repository/summarizer_repository.dart';
@@ -19,14 +19,37 @@ class SummaryPage extends BaseStatefulPageWidget<SummaryPageStore> {
 }
 
 class _SummaryPageState extends BasePageState<SummaryPageStore> {
+  Widget _buildTitle() {
+    return Text(
+      store.pageTitle,
+      textAlign: TextAlign.start,
+      style: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        height: 2,
+      ),
+    );
+  }
+
+  Widget _buildContent() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [_buildTitle()],
+      ),
+    );
+  }
+
   @override
   Widget buildBody(BuildContext context, SummaryPageStore store) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SummaryHeader(
           selectedTab: store.selectedTab,
           onSelected: store.selectTab,
-        )
+        ),
+        _buildContent()
       ],
     );
   }

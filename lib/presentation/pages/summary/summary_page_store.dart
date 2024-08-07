@@ -46,6 +46,13 @@ abstract class _SummaryPageStore extends BasePageStore with Store {
   @action
   selectTab(SummarizerTab tab) => selectedTab = tab;
 
+  @computed
+  String get pageTitle => switch (selectedTab) {
+        SummarizerTab.keyMoments => "Key Moments",
+        SummarizerTab.summary => "Summary",
+        SummarizerTab.search => "Search",
+      };
+
   _summarize() async {
     final result = await executeCall(
       () => _summarizerRepository.summarize(videoUrl: _videoUrl),
