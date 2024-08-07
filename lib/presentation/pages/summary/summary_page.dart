@@ -78,11 +78,18 @@ class _SummaryPageState extends BasePageState<SummaryPageStore> {
             selectedTab: store.selectedTab,
             onSelected: store.selectTab,
           ),
-          _buildContent(
-            title: store.title,
-            summary: data.synopsis,
-            synopsis: data.synopsis,
-            keyMoments: data.keyMoments,
+          Expanded(
+            child: SizedBox(
+              width: double.infinity,
+              child: Container(
+                child: _buildContent(
+                  title: store.title,
+                  summary: data.summary,
+                  synopsis: data.synopsis,
+                  keyMoments: data.keyMoments,
+                ),
+              ),
+            ),
           )
         ],
       ),

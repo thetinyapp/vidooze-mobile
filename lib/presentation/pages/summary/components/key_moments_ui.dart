@@ -67,7 +67,7 @@ class _KeyMoment extends StatelessWidget {
         IIcons.play,
         const Space(x: 8),
         Text(
-          data.timestamp,
+          "Starts at ${data.timestamp}",
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w500,
@@ -95,14 +95,16 @@ class _KeyMoment extends StatelessWidget {
           children: [
             _buildImage(),
             const Space(x: 12),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _getTitle(),
-                const Space(y: 8),
-                _buildTimestamp(),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _getTitle(),
+                  const Space(y: 8),
+                  _buildTimestamp(),
+                ],
+              ),
             )
           ],
         ),

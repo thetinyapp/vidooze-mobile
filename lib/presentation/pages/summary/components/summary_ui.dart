@@ -16,19 +16,24 @@ class SummaryUi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SummarizerTitle(title: title),
-        const Space(y: 8),
-        _BodyText(
-          text: summary,
+    return Expanded(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SummarizerTitle(title: title),
+            const Space(y: 8),
+            _BodyText(
+              text: summary,
+            ),
+            const Space(y: 24),
+            const SummarizerTitle(title: "Synopsis"),
+            const Space(y: 8),
+            _BodyText(text: synopsis)
+          ],
         ),
-        const Space(y: 24),
-        const SummarizerTitle(title: "Synopsis"),
-        const Space(y: 8),
-        _BodyText(text: synopsis)
-      ],
+      ),
     );
   }
 }
