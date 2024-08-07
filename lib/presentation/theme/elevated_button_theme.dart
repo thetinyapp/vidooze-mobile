@@ -5,9 +5,20 @@ class TElevatedButtonTheme {
 
   static ElevatedButtonThemeData lightTheme = ElevatedButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: const WidgetStatePropertyAll(Colors.blue),
-      textStyle: const WidgetStatePropertyAll(TextStyle(
-          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+      backgroundColor:
+          WidgetStateProperty.resolveWith<Color>((Set<WidgetState> state) {
+        if (state.contains(WidgetState.disabled)) {
+          return const Color.fromARGB(255, 123, 123, 123);
+        } else {
+          return const Color.fromARGB(255, 187, 107, 217);
+        }
+      }),
+      foregroundColor: const WidgetStatePropertyAll(
+        Colors.white,
+      ),
+      textStyle: const WidgetStatePropertyAll(
+        TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      ),
       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
         const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 16),
       ),
@@ -21,9 +32,20 @@ class TElevatedButtonTheme {
 
   static ElevatedButtonThemeData darkTheme = ElevatedButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: const WidgetStatePropertyAll(Colors.blue),
-      textStyle: const WidgetStatePropertyAll(TextStyle(
-          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+      backgroundColor:
+          WidgetStateProperty.resolveWith<Color>((Set<WidgetState> state) {
+        if (state.contains(WidgetState.disabled)) {
+          return const Color.fromARGB(255, 123, 123, 123);
+        } else {
+          return const Color.fromARGB(255, 187, 107, 217);
+        }
+      }),
+      foregroundColor: const WidgetStatePropertyAll(
+        Colors.white,
+      ),
+      textStyle: const WidgetStatePropertyAll(
+        TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      ),
       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
         const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 16),
       ),

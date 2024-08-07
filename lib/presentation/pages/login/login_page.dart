@@ -230,8 +230,7 @@ class _AuthPageState extends BasePageState<LoginPageStore> {
   }
 
   @override
-  PreferredSizeWidget? buildAppBar(_, __) =>
-      AppBar(backgroundColor: Colors.transparent);
+  PreferredSizeWidget? buildAppBar(_, __) => AppBar();
 
   Widget _buildForm(BuildContext context) {
     return Form(

@@ -21,7 +21,7 @@ class _HomePageState extends BasePageState<HomePageStore> {
   @override
   PreferredSizeWidget? buildAppBar(BuildContext context, HomePageStore store) {
     return AppBar(
-      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       leading: IconButton(
         icon: const Icon(Icons.person),
         tooltip: "Profile",
