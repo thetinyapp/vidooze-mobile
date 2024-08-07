@@ -27,6 +27,6 @@ class _SummaryPageState extends BasePageState<SummaryPageStore> {
   SummaryPageStore createStore() => SummaryPageStore(
         summarizerRepository: locator.get<SummarizerRepository>(),
         analyticsRepository: locator.get<AnalyticsRepository>(),
-        videoUrl: "(widget as SummaryPage).videoUrl",
+        videoUrl: (widget as SummaryPage).videoUrl,
       );
 }

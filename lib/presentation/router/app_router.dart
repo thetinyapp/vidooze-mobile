@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:vidooze_mobile/presentation/pages/home/home_page.dart';
 import 'package:vidooze_mobile/presentation/pages/login//login_page.dart';
 import 'package:vidooze_mobile/presentation/pages/profile/profile_page.dart';
