@@ -15,6 +15,11 @@ class HomePage extends BaseStatefulPageWidget<HomePageStore> {
 }
 
 class _HomePageState extends BasePageState<HomePageStore> {
+  final _textController = TextEditingController(
+      text: "https://www.youtube.com/watch?v=nIg2Jn_45zc");
+
+  final title = "Lex Fridman Podcast with Sam Altman";
+
   @override
   HomePageStore createStore() => HomePageStore();
 
@@ -30,10 +35,33 @@ class _HomePageState extends BasePageState<HomePageStore> {
     );
   }
 
-  Widget _buildTitle(BuildContext context) {
-    return Text(
-      "Welcome",
-      style: Theme.of(context).textTheme.headlineLarge?.copyWith(fontSize: 80),
+  Widget _buildYoutubeInput(BuildContext context) {
+    return TextField(
+      controller: _textController,
+      style: Theme.of(context).textTheme.titleSmall,
+      decoration: InputDecoration(
+        border: Theme.of(context).inputDecorationTheme.border,
+        floatingLabelStyle:
+            Theme.of(context).inputDecorationTheme.floatingLabelStyle,
+        labelText: "Youtube link",
+        prefixIcon: const Icon(Icons.play_circle),
+      ),
+    );
+  }
+
+  Widget _buildSummarizeButton(BuildContext context) {
+    final theme = Theme.of(context).elevatedButtonTheme;
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        style: theme.style,
+        onPressed: () {
+          context.goTo(
+            SummaryRoute(title: title, videoUrl: _textController.text),
+          );
+        },
+        child: const Text("Summarize video"),
+      ),
     );
   }
 
@@ -41,12 +69,22 @@ class _HomePageState extends BasePageState<HomePageStore> {
   Widget buildBody(BuildContext context, HomePageStore store) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildTitle(context),
-          const Space(y: 40),
-        ],
+      child: SizedBox(
+        height: double.infinity,
+        child: Column(
+          children: [
+            Expanded(
+                child: Container(
+              child: Icon(
+                Icons.youtube_searched_for,
+                size: 100,
+              ),
+            )),
+            _buildYoutubeInput(context),
+            const Space(y: 16),
+            _buildSummarizeButton(context)
+          ],
+        ),
       ),
     );
   }
