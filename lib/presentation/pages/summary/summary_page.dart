@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:vidooze_mobile/di/configure_di.dart';
+import 'package:vidooze_mobile/domain/entity/summary/summary.dart';
 import 'package:vidooze_mobile/domain/repository/analytics_repository.dart';
 import 'package:vidooze_mobile/domain/repository/summarizer_repository.dart';
 import 'package:vidooze_mobile/presentation/base/base_stateful_page_widget.dart';
@@ -17,9 +18,13 @@ import 'package:vidooze_mobile/presentation/pages/summary/summary_page_store.dar
 @RoutePage()
 class SummaryPage extends BaseStatefulPageWidget<SummaryPageStore> {
   final String videoUrl;
+  final String title;
 
-  const SummaryPage({super.key, required this.videoUrl})
-      : super(pageName: "Summary");
+  const SummaryPage(
+    this.title, {
+    super.key,
+    required this.videoUrl,
+  }) : super(pageName: "Summary");
 
   @override
   BasePageState<SummaryPageStore> createState() => _SummaryPageState();
@@ -32,7 +37,12 @@ class _SummaryPageState extends BasePageState<SummaryPageStore> {
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent({
+    required String title,
+    required String summary,
+    required String synopsis,
+    required List<KeyMoment> keyMoments,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
@@ -41,13 +51,13 @@ class _SummaryPageState extends BasePageState<SummaryPageStore> {
           _buildTitle(),
           const Space(y: 24),
           switch (store.selectedTab) {
-            SummarizerTab.keyMoments => const KeyMomentsUi(
-                moments: [],
+            SummarizerTab.keyMoments => KeyMomentsUi(
+                moments: keyMoments,
               ),
-            SummarizerTab.summary => const SummaryUi(
-                title: "Lex Fridman Podcast with Sam Altman",
-                summary: "",
-                synopsis: "",
+            SummarizerTab.summary => SummaryUi(
+                title: title,
+                summary: summary,
+                synopsis: synopsis,
               ),
             SummarizerTab.search => const SummarySearchUi(),
           }
@@ -61,14 +71,19 @@ class _SummaryPageState extends BasePageState<SummaryPageStore> {
     return store.event.when(
       inProgress: () => const SummaryLoader(),
       error: (message) => Text(message),
-      success: (_) => Column(
+      success: (data) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SummaryHeader(
             selectedTab: store.selectedTab,
             onSelected: store.selectTab,
           ),
-          _buildContent()
+          _buildContent(
+            title: store.title,
+            summary: data.synopsis,
+            synopsis: data.synopsis,
+            keyMoments: data.keyMoments,
+          )
         ],
       ),
     );
@@ -79,5 +94,6 @@ class _SummaryPageState extends BasePageState<SummaryPageStore> {
         summarizerRepository: locator.get<SummarizerRepository>(),
         analyticsRepository: locator.get<AnalyticsRepository>(),
         videoUrl: (widget as SummaryPage).videoUrl,
+        title: (widget as SummaryPage).title,
       );
 }

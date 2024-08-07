@@ -24,7 +24,10 @@ class _SplashPageState extends BasePageState<SplashPageStore> {
     disposers.add(reaction((_) => store.event, (event) {
       event.maybeWhen(
         authorised: () => context.goToAndReplace(
-          SummaryRoute(videoUrl: "https://www.youtube.com/watch?v=nIg2Jn_45zc"),
+          SummaryRoute(
+            videoUrl: "https://www.youtube.com/watch?v=nIg2Jn_45zc",
+            title: "Lex Fridman Podcast with Sam Altman",
+          ),
         ),
         unauthorised: () => context.goToAndReplace(const LoginRoute()),
         orElse: () => {},

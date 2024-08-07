@@ -125,6 +125,7 @@ void _setupNetwork() {
   locator.registerLazySingleton<Dio>(
     () => buildClient(
       baseUrl: Env.apiUrl,
+      tokenDataSource: locator.get<TokenDataSource>(),
     ),
   );
   locator.registerLazySingleton(

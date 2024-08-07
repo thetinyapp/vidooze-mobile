@@ -15,6 +15,7 @@ class SummaryPageStore extends _SummaryPageStore with _$SummaryPageStore {
     required super.summarizerRepository,
     required super.analyticsRepository,
     required super.videoUrl,
+    required super.title,
   });
 }
 
@@ -28,11 +29,13 @@ abstract class _SummaryPageStore extends BasePageStore with Store {
   final AnalyticsRepository _analyticsRepository;
   final SummarizerRepository _summarizerRepository;
   final String _videoUrl;
+  final String title;
 
   _SummaryPageStore({
     required AnalyticsRepository analyticsRepository,
     required SummarizerRepository summarizerRepository,
     required String videoUrl,
+    required this.title,
   })  : _analyticsRepository = analyticsRepository,
         _summarizerRepository = summarizerRepository,
         _videoUrl = videoUrl;

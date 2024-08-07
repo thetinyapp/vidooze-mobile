@@ -50,6 +50,7 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: SummaryPage(
+          args.title,
           key: args.key,
           videoUrl: args.videoUrl,
         ),
@@ -132,12 +133,14 @@ class SplashRoute extends PageRouteInfo<void> {
 /// [SummaryPage]
 class SummaryRoute extends PageRouteInfo<SummaryRouteArgs> {
   SummaryRoute({
+    required String title,
     Key? key,
     required String videoUrl,
     List<PageRouteInfo>? children,
   }) : super(
           SummaryRoute.name,
           args: SummaryRouteArgs(
+            title: title,
             key: key,
             videoUrl: videoUrl,
           ),
@@ -152,9 +155,12 @@ class SummaryRoute extends PageRouteInfo<SummaryRouteArgs> {
 
 class SummaryRouteArgs {
   const SummaryRouteArgs({
+    required this.title,
     this.key,
     required this.videoUrl,
   });
+
+  final String title;
 
   final Key? key;
 
@@ -162,6 +168,6 @@ class SummaryRouteArgs {
 
   @override
   String toString() {
-    return 'SummaryRouteArgs{key: $key, videoUrl: $videoUrl}';
+    return 'SummaryRouteArgs{title: $title, key: $key, videoUrl: $videoUrl}';
   }
 }
