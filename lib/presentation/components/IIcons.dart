@@ -19,4 +19,8 @@ class IIcons {
   static Image summary = Image(
     image: AssetImage('assets/icons/summary_icon.png'),
   );
+
+  static Image play = Image(
+    image: AssetImage('assets/icons/play_icon.png'),
+  );
 }

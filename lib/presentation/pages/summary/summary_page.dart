@@ -40,7 +40,9 @@ class _SummaryPageState extends BasePageState<SummaryPageStore> {
           _buildTitle(),
           const Space(y: 24),
           switch (store.selectedTab) {
-            SummarizerTab.keyMoments => const KeyMomentsUi(),
+            SummarizerTab.keyMoments => const KeyMomentsUi(
+                moments: [],
+              ),
             SummarizerTab.summary => const SummaryUi(),
             SummarizerTab.search => const SummarySearchUi(),
           }
