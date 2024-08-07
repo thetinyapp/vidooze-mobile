@@ -33,12 +33,17 @@ void _initErrorReporting() {
   PlatformDispatcher.instance.onError = (error, stack) {
     errorReportingRepository
         .reportError(
-          error: error,
-          stackTrace: stack,
-          source: "PLATFORM_DISPATCHER",
-          isFatal: true,
-        )
-        .then((_) {});
+      error: error,
+      stackTrace: stack,
+      source: "PLATFORM_DISPATCHER",
+      isFatal: true,
+    )
+        .then((_) {
+      print("Successfully reported Error");
+    }).catchError((err) {
+      print("Failed to Report Error: $err");
+      print(err);
+    });
 
     return true;
   };
