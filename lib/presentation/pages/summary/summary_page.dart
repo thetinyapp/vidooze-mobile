@@ -43,7 +43,11 @@ class _SummaryPageState extends BasePageState<SummaryPageStore> {
             SummarizerTab.keyMoments => const KeyMomentsUi(
                 moments: [],
               ),
-            SummarizerTab.summary => const SummaryUi(),
+            SummarizerTab.summary => const SummaryUi(
+                title: "Lex Fridman Podcast with Sam Altman",
+                summary: "",
+                synopsis: "",
+              ),
             SummarizerTab.search => const SummarySearchUi(),
           }
         ],
