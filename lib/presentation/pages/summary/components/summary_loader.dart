@@ -1,28 +1,35 @@
 import 'package:flutter/widgets.dart';
+import 'package:vidooze_mobile/presentation/pages/summary/components/summarizer_title.dart';
 
 class SummaryLoader extends StatelessWidget {
   const SummaryLoader({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _LoaderText(
-          data: LoaderData(
-            disabled: false,
-            text: "Some title will come here",
-            type: LoaderType.summarizing,
-          ),
-        ),
-        _LoaderText(
-          data: LoaderData(
-            disabled: false,
-            text: "Some title will come here",
-            type: LoaderType.loading,
-          ),
-        ),
-      ],
+    return const Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [SummarizerTitle(title: "Summarizing...")],
+      ),
     );
+    // return Column(
+    //   children: [
+    //     _LoaderText(
+    //       data: LoaderData(
+    //         disabled: false,
+    //         text: "Some title will come here",
+    //         type: LoaderType.summarizing,
+    //       ),
+    //     ),
+    //     _LoaderText(
+    //       data: LoaderData(
+    //         disabled: false,
+    //         text: "Some title will come here",
+    //         type: LoaderType.loading,
+    //       ),
+    //     ),
+    //   ],
+    // );
   }
 }
 
