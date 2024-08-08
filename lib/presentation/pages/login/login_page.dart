@@ -156,17 +156,6 @@ class _AuthPageState extends BasePageState<LoginPageStore> {
     );
   }
 
-  Widget _buildForgetPassword(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Text(
-        "Forget Password ?",
-        textAlign: TextAlign.end,
-        style: Theme.of(context).textTheme.labelLarge,
-      ),
-    );
-  }
-
   Widget _buildOAuthLogin() {
     return Row(
       mainAxisSize: MainAxisSize.max,
@@ -240,9 +229,7 @@ class _AuthPageState extends BasePageState<LoginPageStore> {
           _buildEmailInput(context),
           const Space(y: 10),
           _buildPasswordInput(context),
-          const Space(y: 10),
-          _buildForgetPassword(context),
-          const Space(y: 40),
+          const Space(y: 20),
           _buildSubmitButton(context),
         ],
       ),
