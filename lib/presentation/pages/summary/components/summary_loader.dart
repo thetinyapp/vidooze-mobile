@@ -9,7 +9,9 @@ class SummaryLoader extends StatelessWidget {
     return const Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [SummarizerTitle(title: "Summarizing...")],
+        children: [
+          SummarizerTitle(title: "Summarizing..."),
+        ],
       ),
     );
     // return Column(
